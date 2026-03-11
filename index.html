@@ -4,434 +4,724 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tiny Songs & Moments</title>
-
-  <!-- Google Fonts: Nunito (warm, rounded body) + Caveat (hand-drawn headings) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
 
   <style>
     /* ============================================================
-       CSS VARIABLES — Warm, gentle palette
+       DESIGN TOKENS
        ============================================================ */
     :root {
-      --parchment:    #fdf6e3;
-      --parchment-mid:#f5eac8;
-      --sky:          #a8d8ea;
-      --sky-light:    #d6eef7;
-      --lavender:     #c9b8e8;
-      --lavender-light:#e8dff7;
-      --mint:         #b8e0c8;
-      --yellow:       #f9e07f;
-      --coral:        #f4a38a;
-      --charcoal:     #3a3530;
-      --charcoal-soft:#6b5f56;
-      --white-warm:   #fffef8;
+      /* Palette — warm parchment world */
+      --parchment:      #fef9ed;
+      --parchment-dark: #f5eacc;
+      --parchment-deep: #ecddb0;
+      --cream:          #fffdf5;
 
-      --radius-lg: 22px;
-      --radius-pill: 50px;
-      --shadow-soft: 0 4px 18px rgba(58,53,48,0.10);
-      --shadow-card:  0 6px 28px rgba(58,53,48,0.13);
+      --yellow:         #f9dc6e;
+      --yellow-deep:    #e8c74a;
+      --yellow-wash:    #fef7d0;
+
+      --sky:            #a8d8ea;
+      --sky-deep:       #6bb8d4;
+      --sky-wash:       #dff1f8;
+
+      --lavender:       #c5b3e6;
+      --lavender-deep:  #9b84cc;
+      --lavender-wash:  #ede8f8;
+
+      --mint:           #9dd4b8;
+      --mint-deep:      #6ab898;
+      --mint-wash:      #ddf3e9;
+
+      --coral:          #f4a98c;
+      --coral-deep:     #e07d5a;
+      --coral-wash:     #fde9e0;
+
+      --ink:            #3d2f28;
+      --ink-mid:        #6b5548;
+      --ink-soft:       #9b8478;
+      --ink-faint:      #c9b8b0;
+
+      --white-warm:     #fffefb;
+
+      /* Typography */
+      --font-display: 'Caveat', cursive;
+      --font-body:    'Baloo 2', sans-serif;
+
+      /* Radii */
+      --r-sm:   10px;
+      --r-md:   18px;
+      --r-lg:   26px;
+      --r-xl:   36px;
+      --r-pill: 100px;
+
+      /* Shadows — soft, warm-toned */
+      --shadow-xs: 0 2px 8px rgba(61,47,40,0.08);
+      --shadow-sm: 0 4px 16px rgba(61,47,40,0.10);
+      --shadow-md: 0 8px 28px rgba(61,47,40,0.12);
+      --shadow-lg: 0 14px 40px rgba(61,47,40,0.14);
     }
 
     /* ============================================================
-       RESET & BASE
+       RESET
        ============================================================ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
+    /* ============================================================
+       BODY — parchment texture via layered SVG + gradient
+       ============================================================ */
     body {
-      font-family: 'Nunito', sans-serif;
+      font-family: var(--font-body);
       background-color: var(--parchment);
-      color: var(--charcoal);
-      min-height: 100vh;
-      /* Subtle noise-like texture via SVG background */
       background-image:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Ccircle cx='20' cy='20' r='1.2' fill='%23c9b8e8' opacity='0.3'/%3E%3Ccircle cx='70' cy='10' r='0.8' fill='%23a8d8ea' opacity='0.3'/%3E%3Ccircle cx='100' cy='50' r='1.4' fill='%23f9e07f' opacity='0.25'/%3E%3Ccircle cx='40' cy='90' r='1' fill='%23f4a38a' opacity='0.2'/%3E%3Ccircle cx='90' cy='100' r='1.2' fill='%23b8e0c8' opacity='0.3'/%3E%3C/svg%3E");
+        /* grain dots */
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Ccircle cx='30' cy='30' r='1' fill='%23c9b8e8' opacity='0.25'/%3E%3Ccircle cx='80' cy='15' r='0.7' fill='%23a8d8ea' opacity='0.2'/%3E%3Ccircle cx='150' cy='60' r='1.1' fill='%23f9dc6e' opacity='0.18'/%3E%3Ccircle cx='50' cy='120' r='0.9' fill='%23f4a98c' opacity='0.15'/%3E%3Ccircle cx='130' cy='150' r='1.3' fill='%239dd4b8' opacity='0.2'/%3E%3Ccircle cx='170' cy='30' r='0.8' fill='%23c5b3e6' opacity='0.2'/%3E%3Ccircle cx='20' cy='170' r='1' fill='%23a8d8ea' opacity='0.18'/%3E%3Ccircle cx='110' cy='90' r='0.6' fill='%23f9dc6e' opacity='0.15'/%3E%3C/svg%3E"),
+        /* top warm glow */
+        radial-gradient(ellipse 80% 40% at 50% 0%, rgba(249,220,110,0.12) 0%, transparent 70%);
+      color: var(--ink);
+      min-height: 100vh;
       overflow-x: hidden;
     }
 
     /* ============================================================
-       DECORATIVE DOODLES — SVG floaters
+       PAGE LAYOUT
        ============================================================ */
-    .doodle-layer {
+    .page {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 0 1rem 5rem;
+      position: relative;
+    }
+
+    /* ============================================================
+       FLOATING DOODLES — fixed background layer
+       ============================================================ */
+    .doodles {
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: 0;
       overflow: hidden;
     }
-    .doodle-layer svg {
-      position: absolute;
-      opacity: 0.18;
-    }
-    /* Animate each doodle with a gentle float */
-    .d1 { top: 5%;  left: 3%;  animation: floatA 7s ease-in-out infinite; }
-    .d2 { top: 12%; right: 5%; animation: floatB 9s ease-in-out infinite; }
-    .d3 { bottom: 18%; left: 6%; animation: floatA 11s ease-in-out infinite; }
-    .d4 { bottom: 8%; right: 4%; animation: floatB 8s ease-in-out infinite; }
-    .d5 { top: 42%; left: 1%;  animation: floatA 13s ease-in-out infinite; }
-    .d6 { top: 55%; right: 2%; animation: floatB 10s ease-in-out infinite; }
+    .doodles svg { position: absolute; }
 
-    @keyframes floatA {
-      0%, 100% { transform: translateY(0px) rotate(-3deg); }
-      50%       { transform: translateY(-12px) rotate(2deg); }
-    }
-    @keyframes floatB {
-      0%, 100% { transform: translateY(0px) rotate(4deg); }
-      50%       { transform: translateY(-9px) rotate(-2deg); }
+    /* Each doodle: position + animation */
+    .dk-1 { top: 3%;   left: 2%;   animation: dFloat 8s  ease-in-out infinite; }
+    .dk-2 { top: 8%;   right: 3%;  animation: dFloat 11s ease-in-out infinite 1s; }
+    .dk-3 { top: 38%;  left: 1%;   animation: dFloat 9s  ease-in-out infinite 2s; }
+    .dk-4 { top: 45%;  right: 2%;  animation: dFloat 13s ease-in-out infinite 0.5s; }
+    .dk-5 { bottom:22%;left: 3%;   animation: dFloat 10s ease-in-out infinite 3s; }
+    .dk-6 { bottom:10%;right: 2%;  animation: dFloat 7s  ease-in-out infinite 1.5s; }
+    .dk-7 { top: 68%;  left: 0%;   animation: dFloat 12s ease-in-out infinite 4s; }
+
+    @keyframes dFloat {
+      0%,100% { transform: translateY(0)    rotate(-2deg); }
+      50%      { transform: translateY(-14px) rotate(3deg);  }
     }
 
     /* ============================================================
-       LAYOUT
-       ============================================================ */
-    .page-wrap {
-      position: relative;
-      z-index: 1;
-      max-width: 540px;
-      margin: 0 auto;
-      padding: 2rem 1.2rem 4rem;
-    }
-
-    /* ============================================================
-       HEADER
+       APP HEADER
        ============================================================ */
     .app-header {
+      position: relative;
+      z-index: 1;
       text-align: center;
-      margin-bottom: 2.2rem;
+      padding: 2.4rem 1rem 1.6rem;
     }
-    .header-badge {
-      display: inline-block;
-      background: var(--yellow);
-      border: 2.5px solid var(--charcoal);
-      border-radius: var(--radius-pill);
-      padding: 0.25rem 1rem;
-      font-size: 0.78rem;
+
+    /* Watercolour blob behind header */
+    .header-blob {
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 320px; height: 160px;
+      background: radial-gradient(ellipse, rgba(249,220,110,0.28) 0%, rgba(197,179,230,0.18) 55%, transparent 80%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .header-content { position: relative; z-index: 1; }
+
+    .header-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--yellow-wash);
+      border: 1.5px solid var(--yellow-deep);
+      border-radius: var(--r-pill);
+      padding: 0.22rem 0.9rem;
+      font-size: 0.72rem;
       font-weight: 700;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.07em;
       text-transform: uppercase;
-      color: var(--charcoal-soft);
+      color: var(--ink-mid);
       margin-bottom: 0.7rem;
-      box-shadow: 3px 3px 0 var(--charcoal);
     }
+
     .app-title {
-      font-family: 'Caveat', cursive;
-      font-size: clamp(2.2rem, 8vw, 3rem);
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 9vw, 3.2rem);
       font-weight: 700;
-      line-height: 1.1;
-      color: var(--charcoal);
-      /* Gentle hand-drawn wobble via letter-spacing */
+      color: var(--ink);
+      line-height: 1.05;
       letter-spacing: -0.01em;
     }
-    .app-title span { color: #9b7dd4; } /* lavender accent on key word */
-    .app-subtitle {
-      margin-top: 0.6rem;
-      font-size: 0.95rem;
-      color: var(--charcoal-soft);
-      line-height: 1.5;
+    .app-title em {
+      font-style: normal;
+      color: var(--lavender-deep);
     }
-    /* Small decorative waveform under heading */
-    .wave-divider {
-      margin: 1rem auto 0;
+
+    .app-tagline {
+      margin-top: 0.5rem;
+      font-size: 0.95rem;
+      color: var(--ink-mid);
+      line-height: 1.55;
+      font-weight: 500;
+    }
+
+    /* Wavy SVG rule */
+    .wave-rule {
       display: block;
-      width: 120px;
-      opacity: 0.5;
+      margin: 1rem auto 0;
+      width: 100px;
+      opacity: 0.45;
     }
 
     /* ============================================================
-       CARD — shared style for each section
+       SECTION LABEL — small floated label above cards
        ============================================================ */
-    .card {
-      background: var(--white-warm);
-      border: 2px solid var(--charcoal);
-      border-radius: var(--radius-lg);
-      padding: 1.5rem 1.6rem;
-      margin-bottom: 1.2rem;
-      box-shadow: 4px 4px 0 var(--charcoal);
-      transition: box-shadow 0.2s ease, transform 0.2s ease;
-    }
-    .card:hover {
-      box-shadow: 6px 6px 0 var(--charcoal);
-      transform: translateY(-2px);
-    }
-    .card-label {
-      font-family: 'Caveat', cursive;
-      font-size: 1.3rem;
+    .section-label {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
       font-weight: 600;
-      margin-bottom: 1rem;
+      color: var(--ink-mid);
+      margin: 1.4rem 0 0.5rem 0.2rem;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      color: var(--charcoal);
+      gap: 0.4rem;
+      position: relative;
+      z-index: 1;
     }
-    .card-label .icon {
-      font-size: 1.4rem;
+
+    /* ============================================================
+       CARD — base style (watercolour feel)
+       ============================================================ */
+    .card {
+      position: relative;
+      z-index: 1;
+      background: var(--white-warm);
+      border-radius: var(--r-lg);
+      padding: 1.4rem 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: var(--shadow-sm);
+      /* Subtle inner top highlight for depth */
+      border: 1.5px solid rgba(255,250,235,0.9);
+      outline: 1px solid rgba(61,47,40,0.07);
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+      overflow: hidden;
+    }
+    .card::before {
+      /* Watercolour wash — unique tint per card via modifier */
+      content: '';
+      position: absolute;
+      top: -20px; right: -20px;
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      opacity: 0.18;
+      pointer-events: none;
+    }
+    .card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    /* Card colour washes */
+    .card--yellow::before { background: radial-gradient(circle, var(--yellow) 0%, transparent 70%); }
+    .card--sky::before    { background: radial-gradient(circle, var(--sky)    0%, transparent 70%); }
+    .card--lavender::before { background: radial-gradient(circle, var(--lavender) 0%, transparent 70%); }
+    .card--mint::before   { background: radial-gradient(circle, var(--mint)   0%, transparent 70%); }
+    .card--coral::before  { background: radial-gradient(circle, var(--coral)  0%, transparent 70%); }
+
+    /* ============================================================
+       CARD HEADER ROW
+       ============================================================ */
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1.1rem;
+    }
+    /* Colour blob icon container */
+    .card-icon {
+      width: 40px; height: 40px;
+      border-radius: var(--r-md);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.2rem;
+    }
+    .card-icon--yellow   { background: var(--yellow-wash); }
+    .card-icon--sky      { background: var(--sky-wash); }
+    .card-icon--lavender { background: var(--lavender-wash); }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+    .card-subtitle {
+      font-size: 0.78rem;
+      color: var(--ink-soft);
+      font-weight: 500;
+      margin-top: 0.1rem;
     }
 
     /* ============================================================
        AGE SLIDER
        ============================================================ */
-    .age-display {
+    .age-hero {
       text-align: center;
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
+      padding: 0.5rem 0;
     }
-    .age-number {
-      font-family: 'Caveat', cursive;
-      font-size: 3rem;
+    .age-big {
+      font-family: var(--font-display);
+      font-size: 4rem;
       font-weight: 700;
-      color: #4a9db8; /* sky-deep */
+      color: var(--sky-deep);
       line-height: 1;
+      /* Subtle text shadow for depth */
+      text-shadow: 2px 3px 0 rgba(107,184,212,0.2);
     }
-    .age-unit {
-      font-size: 0.9rem;
-      color: var(--charcoal-soft);
-      margin-top: 0.1rem;
+    .age-label {
+      font-size: 0.88rem;
+      color: var(--ink-mid);
+      margin-top: 0.3rem;
+      font-weight: 600;
+      min-height: 1.3em;
     }
 
-    /* Custom range slider */
+    /* Month milestone dots row */
+    .age-milestones {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.6rem;
+      padding: 0 1px;
+    }
+    .milestone-dot {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      cursor: pointer;
+      opacity: 0.5;
+      transition: opacity 0.2s;
+    }
+    .milestone-dot.active { opacity: 1; }
+    .milestone-dot span:first-child {
+      width: 8px; height: 8px;
+      background: var(--parchment-deep);
+      border-radius: 50%;
+      border: 1.5px solid var(--ink-faint);
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .milestone-dot.active span:first-child {
+      background: var(--sky-deep);
+      border-color: var(--sky-deep);
+    }
+    .milestone-dot span:last-child {
+      font-size: 0.6rem;
+      font-weight: 700;
+      color: var(--ink-soft);
+    }
+
+    /* Slider track */
     input[type="range"] {
       -webkit-appearance: none;
       appearance: none;
       width: 100%;
-      height: 10px;
-      border-radius: 10px;
+      height: 8px;
+      border-radius: var(--r-pill);
       background: linear-gradient(
         to right,
         var(--sky) 0%,
-        var(--sky) var(--slider-pct, 0%),
-        var(--parchment-mid) var(--slider-pct, 0%),
-        var(--parchment-mid) 100%
+        var(--sky) var(--fill, 0%),
+        var(--parchment-dark) var(--fill, 0%),
+        var(--parchment-dark) 100%
       );
       outline: none;
-      border: 2px solid var(--charcoal);
       cursor: pointer;
-      transition: background 0.15s;
+      border: none;
+      box-shadow: inset 0 1px 3px rgba(61,47,40,0.12);
+      transition: background 0.1s;
     }
     input[type="range"]::-webkit-slider-thumb {
       -webkit-appearance: none;
-      appearance: none;
-      width: 28px;
-      height: 28px;
+      width: 30px; height: 30px;
       border-radius: 50%;
-      background: var(--yellow);
-      border: 2.5px solid var(--charcoal);
-      box-shadow: 2px 2px 0 var(--charcoal);
+      background: var(--white-warm);
+      border: 2.5px solid var(--sky-deep);
+      box-shadow: 0 3px 10px rgba(107,184,212,0.35), 0 1px 3px rgba(61,47,40,0.1);
       cursor: grab;
-      transition: transform 0.15s, background 0.15s;
+      transition: transform 0.15s, box-shadow 0.15s;
+      /* Star inside thumb via background */
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath d='M8 1l1.8 4.4H14l-3.4 2.5 1.3 4L8 9.6l-3.9 2.3 1.3-4L2 5.4h4.2z' fill='%236bb8d4' opacity='0.6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 14px;
     }
     input[type="range"]::-webkit-slider-thumb:active {
       cursor: grabbing;
-      transform: scale(1.2);
-      background: var(--coral);
+      transform: scale(1.15);
+      box-shadow: 0 4px 14px rgba(107,184,212,0.5);
     }
     input[type="range"]::-moz-range-thumb {
-      width: 28px;
-      height: 28px;
+      width: 30px; height: 30px;
       border-radius: 50%;
-      background: var(--yellow);
-      border: 2.5px solid var(--charcoal);
+      background: var(--white-warm);
+      border: 2.5px solid var(--sky-deep);
       cursor: grab;
     }
 
-    /* Month tick labels */
-    .age-ticks {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 0.5rem;
-      padding: 0 2px;
-      font-size: 0.72rem;
-      color: var(--charcoal-soft);
-      font-weight: 600;
-    }
-
     /* ============================================================
-       MOOD SELECTOR — emoji toggle buttons
+       MOOD SELECTOR
        ============================================================ */
     .mood-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 0.75rem;
+      gap: 0.65rem;
     }
+
     .mood-btn {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.35rem;
-      padding: 0.9rem 0.5rem;
-      border: 2px solid var(--charcoal);
-      border-radius: var(--radius-lg);
+      gap: 0.5rem;
+      padding: 1rem 0.4rem 0.8rem;
+      border-radius: var(--r-lg);
+      border: 2px solid transparent;
       background: var(--parchment);
       cursor: pointer;
-      transition: all 0.18s ease;
-      box-shadow: 3px 3px 0 var(--charcoal);
-      font-family: 'Nunito', sans-serif;
-      font-size: 0.8rem;
+      transition: all 0.2s ease;
+      box-shadow: var(--shadow-xs);
+      font-family: var(--font-body);
+      font-size: 0.78rem;
       font-weight: 700;
-      color: var(--charcoal-soft);
+      color: var(--ink-mid);
       text-align: center;
-      line-height: 1.2;
+      line-height: 1.25;
+      position: relative;
+      overflow: hidden;
     }
+
+    /* Watercolour wash on hover */
+    .mood-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.2s;
+      border-radius: inherit;
+    }
+    .mood-btn[data-mood="calm"]::before    { background: radial-gradient(circle at 50% 30%, var(--sky-wash), transparent 80%); }
+    .mood-btn[data-mood="playful"]::before { background: radial-gradient(circle at 50% 30%, var(--yellow-wash), transparent 80%); }
+    .mood-btn[data-mood="fussy"]::before   { background: radial-gradient(circle at 50% 30%, var(--coral-wash), transparent 80%); }
+
+    .mood-btn:hover::before,
+    .mood-btn.selected::before { opacity: 1; }
+
     .mood-btn:hover {
       transform: translateY(-3px);
-      box-shadow: 5px 5px 0 var(--charcoal);
+      box-shadow: var(--shadow-sm);
     }
-    .mood-btn .emoji {
-      font-size: 2rem;
-      line-height: 1;
-      /* Hand-drawn feel: slightly variable size using inline doodle SVGs */
-    }
-    /* Active / selected state per mood — colour coded */
+
+    /* Selected states */
     .mood-btn.selected[data-mood="calm"] {
-      background: var(--sky-light);
-      border-color: #4a9db8;
-      box-shadow: 3px 3px 0 #4a9db8;
-      color: #2e7a95;
+      border-color: var(--sky-deep);
+      background: var(--sky-wash);
+      color: var(--sky-deep);
     }
     .mood-btn.selected[data-mood="playful"] {
-      background: #fff3c0;
-      border-color: #c9991a;
-      box-shadow: 3px 3px 0 #c9991a;
-      color: #7a5e0a;
+      border-color: var(--yellow-deep);
+      background: var(--yellow-wash);
+      color: #8a6e10;
     }
     .mood-btn.selected[data-mood="fussy"] {
-      background: #fce4dc;
-      border-color: #c76a52;
-      box-shadow: 3px 3px 0 #c76a52;
-      color: #7a2e1a;
+      border-color: var(--coral-deep);
+      background: var(--coral-wash);
+      color: var(--coral-deep);
     }
-    .mood-btn.selected .emoji {
-      animation: wiggle 0.4s ease;
+
+    /* Mood face SVGs */
+    .mood-face {
+      width: 48px; height: 48px;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+      transition: transform 0.3s ease;
     }
-    @keyframes wiggle {
-      0%   { transform: rotate(0deg);   }
-      25%  { transform: rotate(-10deg); }
-      75%  { transform: rotate(10deg);  }
-      100% { transform: rotate(0deg);   }
+    .mood-btn.selected .mood-face { animation: moodPop 0.4s cubic-bezier(0.34,1.56,0.64,1); }
+    @keyframes moodPop {
+      0%   { transform: scale(1); }
+      40%  { transform: scale(1.25) rotate(-5deg); }
+      100% { transform: scale(1) rotate(0); }
     }
+
+    .mood-label { position: relative; z-index: 1; }
 
     /* ============================================================
        GET ACTIVITY BUTTON
        ============================================================ */
-    .btn-get {
-      display: block;
+    .btn-primary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
       width: 100%;
-      padding: 1rem 1.5rem;
-      font-family: 'Caveat', cursive;
-      font-size: 1.55rem;
+      padding: 1.05rem 1.5rem;
+      font-family: var(--font-display);
+      font-size: 1.5rem;
       font-weight: 700;
-      letter-spacing: 0.02em;
-      color: var(--charcoal);
+      color: var(--ink);
       background: var(--yellow);
-      border: 2.5px solid var(--charcoal);
-      border-radius: var(--radius-pill);
-      box-shadow: 5px 5px 0 var(--charcoal);
+      border: none;
+      border-radius: var(--r-pill);
+      box-shadow: 0 4px 0 var(--yellow-deep), var(--shadow-sm);
       cursor: pointer;
       transition: all 0.18s ease;
-      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 1.2rem;
+      letter-spacing: 0.01em;
     }
-    .btn-get:hover {
+    .btn-primary:hover:not(:disabled) {
       background: var(--coral);
-      transform: translateY(-3px);
-      box-shadow: 7px 7px 0 var(--charcoal);
+      box-shadow: 0 4px 0 var(--coral-deep), var(--shadow-md);
+      transform: translateY(-2px);
     }
-    .btn-get:active {
-      transform: translateY(1px);
-      box-shadow: 3px 3px 0 var(--charcoal);
+    .btn-primary:active:not(:disabled) {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 var(--yellow-deep), var(--shadow-xs);
     }
-    .btn-get:disabled {
-      opacity: 0.5;
+    .btn-primary:disabled {
+      opacity: 0.45;
       cursor: not-allowed;
-      transform: none;
     }
+    .btn-icon { font-size: 1.3rem; }
 
     /* ============================================================
        RESULT CARD
        ============================================================ */
     .result-card {
-      display: none; /* shown via JS */
-      border-radius: var(--radius-lg);
-      border: 2.5px solid var(--charcoal);
-      padding: 1.6rem;
-      box-shadow: 5px 5px 0 var(--charcoal);
-      animation: popIn 0.35s cubic-bezier(0.34,1.56,0.64,1) forwards;
+      display: none;
       position: relative;
+      z-index: 1;
+      border-radius: var(--r-xl);
+      padding: 0;
       overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      animation: resultIn 0.4s cubic-bezier(0.34,1.4,0.64,1) forwards;
+      margin-bottom: 1.5rem;
     }
     .result-card.visible { display: block; }
 
-    @keyframes popIn {
-      from { opacity: 0; transform: scale(0.88) translateY(12px); }
-      to   { opacity: 1; transform: scale(1)    translateY(0);    }
+    @keyframes resultIn {
+      from { opacity: 0; transform: scale(0.9) translateY(16px); }
+      to   { opacity: 1; transform: scale(1)   translateY(0); }
     }
 
-    /* Background colour per mood */
-    .result-card.calm    { background: var(--sky-light); }
-    .result-card.playful { background: #fff8d6; }
-    .result-card.fussy   { background: #fce4dc; }
+    /* Top colour band — mood colour */
+    .result-band {
+      height: 6px;
+      width: 100%;
+    }
+    .result-card.calm    .result-band { background: linear-gradient(90deg, var(--sky), var(--lavender)); }
+    .result-card.playful .result-band { background: linear-gradient(90deg, var(--yellow), var(--mint)); }
+    .result-card.fussy   .result-band { background: linear-gradient(90deg, var(--coral), var(--lavender)); }
 
-    .result-tag {
-      display: inline-block;
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      border: 1.5px solid currentColor;
-      border-radius: var(--radius-pill);
-      padding: 0.15rem 0.7rem;
-      margin-bottom: 0.8rem;
-      opacity: 0.75;
-    }
-    .result-song-title {
-      font-family: 'Caveat', cursive;
-      font-size: 1.7rem;
-      font-weight: 700;
-      line-height: 1.15;
-      margin-bottom: 0.3rem;
-    }
-    .result-context-badge {
-      display: inline-block;
-      background: rgba(255,255,255,0.6);
-      border: 1.5px solid var(--charcoal);
-      border-radius: var(--radius-pill);
-      font-size: 0.75rem;
-      padding: 0.15rem 0.65rem;
-      margin-bottom: 0.9rem;
-      font-weight: 600;
-    }
-    .result-activity-title {
-      font-weight: 700;
-      font-size: 0.88rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 0.35rem;
-      opacity: 0.75;
-    }
-    .result-activity-desc {
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-    .result-tip {
-      margin-top: 0.9rem;
-      padding: 0.7rem 0.9rem;
-      background: rgba(255,255,255,0.55);
-      border-radius: 12px;
-      font-size: 0.88rem;
-      line-height: 1.5;
-      border-left: 3px solid var(--charcoal);
-    }
-    .result-tip strong {
-      font-family: 'Caveat', cursive;
-      font-size: 1rem;
+    .result-body {
+      background: var(--white-warm);
+      padding: 1.5rem 1.6rem 1.6rem;
+      position: relative;
     }
 
-    /* Sparkle decoration inside result card */
-    .result-sparkles {
+    /* Watercolour wash blob in result card */
+    .result-blob {
       position: absolute;
-      top: 0.7rem;
-      right: 1rem;
-      font-size: 1.4rem;
-      opacity: 0.55;
+      top: -30px; right: -30px;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      opacity: 0.12;
       pointer-events: none;
-      animation: floatA 5s ease-in-out infinite;
+    }
+    .result-card.calm    .result-blob { background: var(--sky); }
+    .result-card.playful .result-blob { background: var(--yellow); }
+    .result-card.fussy   .result-blob { background: var(--coral); }
+
+    /* Song row */
+    .result-song-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.9rem;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Big icon bubble */
+    .result-song-icon {
+      width: 54px; height: 54px;
+      border-radius: var(--r-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+      box-shadow: var(--shadow-xs);
+    }
+    .result-card.calm    .result-song-icon { background: var(--sky-wash); }
+    .result-card.playful .result-song-icon { background: var(--yellow-wash); }
+    .result-card.fussy   .result-song-icon { background: var(--coral-wash); }
+
+    .result-song-meta { flex: 1; }
+
+    .result-mood-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.15rem 0.6rem;
+      border-radius: var(--r-pill);
+      margin-bottom: 0.35rem;
+    }
+    .result-card.calm    .result-mood-tag { background: var(--sky-wash);    color: var(--sky-deep); }
+    .result-card.playful .result-mood-tag { background: var(--yellow-wash); color: #8a6e10; }
+    .result-card.fussy   .result-mood-tag { background: var(--coral-wash);  color: var(--coral-deep); }
+
+    .result-song-name {
+      font-family: var(--font-display);
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.15;
+    }
+
+    .result-context {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--ink-soft);
+      background: var(--parchment);
+      border-radius: var(--r-pill);
+      padding: 0.18rem 0.65rem;
+      margin-top: 0.4rem;
+    }
+
+    /* Divider */
+    .result-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--parchment-dark), transparent);
+      margin: 1rem 0;
+      position: relative; z-index: 1;
+    }
+
+    /* Activity section */
+    .result-activity-label {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-soft);
+      margin-bottom: 0.5rem;
+      position: relative; z-index: 1;
+    }
+
+    .result-activity-text {
+      font-size: 0.97rem;
+      line-height: 1.65;
+      color: var(--ink);
+      font-weight: 500;
+      position: relative; z-index: 1;
+    }
+
+    /* Tip box */
+    .result-tip-box {
+      margin-top: 1rem;
+      padding: 0.85rem 1rem;
+      border-radius: var(--r-md);
+      position: relative; z-index: 1;
+    }
+    .result-card.calm    .result-tip-box { background: var(--sky-wash); }
+    .result-card.playful .result-tip-box { background: var(--yellow-wash); }
+    .result-card.fussy   .result-tip-box { background: var(--coral-wash); }
+
+    .result-tip-label {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--ink-mid);
+      margin-bottom: 0.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .result-tip-text {
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--ink-mid);
+      font-weight: 500;
+    }
+
+    /* Try again button */
+    .btn-secondary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      width: 100%;
+      padding: 0.7rem;
+      margin-top: 1rem;
+      background: transparent;
+      border: 1.5px dashed var(--ink-faint);
+      border-radius: var(--r-pill);
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative; z-index: 1;
+    }
+    .btn-secondary:hover {
+      border-color: var(--ink-mid);
+      color: var(--ink);
+      background: var(--parchment);
+    }
+
+    /* ============================================================
+       PAGE LOAD STAGGER ANIMATION
+       ============================================================ */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.5s ease forwards;
+    }
+    .fade-in:nth-child(1) { animation-delay: 0.05s; }
+    .fade-in:nth-child(2) { animation-delay: 0.15s; }
+    .fade-in:nth-child(3) { animation-delay: 0.25s; }
+    .fade-in:nth-child(4) { animation-delay: 0.35s; }
+    .fade-in:nth-child(5) { animation-delay: 0.42s; }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* ============================================================
@@ -439,520 +729,535 @@
        ============================================================ */
     .app-footer {
       text-align: center;
-      margin-top: 2.5rem;
-      font-size: 0.78rem;
-      color: var(--charcoal-soft);
-      opacity: 0.7;
+      padding: 1rem 0 0.5rem;
+      font-size: 0.75rem;
+      color: var(--ink-faint);
+      font-weight: 600;
+      position: relative; z-index: 1;
     }
-    .app-footer a { color: inherit; }
 
     /* ============================================================
-       RESPONSIVE TWEAKS
+       RESPONSIVE
        ============================================================ */
-    @media (max-width: 400px) {
-      .mood-btn .emoji { font-size: 1.6rem; }
+    @media (max-width: 380px) {
+      .mood-btn { padding: 0.8rem 0.3rem; font-size: 0.72rem; }
+      .mood-face { width: 40px; height: 40px; }
       .app-title { font-size: 2rem; }
+      .age-big   { font-size: 3.2rem; }
     }
   </style>
 </head>
 <body>
 
   <!-- ============================================================
-       DECORATIVE BACKGROUND DOODLES (SVG)
+       DECORATIVE FLOATING DOODLES
        ============================================================ -->
-  <div class="doodle-layer" aria-hidden="true">
-
-    <!-- Star -->
-    <svg class="d1" width="48" height="48" viewBox="0 0 48 48">
-      <path d="M24 4 l4 13 h14 l-11 8 4 13 -11-8 -11 8 4-13 -11-8 h14z"
-            fill="none" stroke="#f9e07f" stroke-width="2.5" stroke-linejoin="round"/>
-    </svg>
-
-    <!-- Moon -->
-    <svg class="d2" width="44" height="44" viewBox="0 0 44 44">
-      <path d="M26 6 Q10 12 10 24 Q10 36 24 40 Q10 38 8 24 Q6 10 20 6z"
-            fill="none" stroke="#c9b8e8" stroke-width="2.5" stroke-linecap="round"/>
-    </svg>
+  <div class="doodles" aria-hidden="true">
 
     <!-- Musical note -->
-    <svg class="d3" width="40" height="52" viewBox="0 0 40 52">
-      <line x1="14" y1="36" x2="14" y2="10" stroke="#a8d8ea" stroke-width="2.5" stroke-linecap="round"/>
-      <ellipse cx="11" cy="38" rx="7" ry="5" fill="none" stroke="#a8d8ea" stroke-width="2.5" transform="rotate(-12 11 38)"/>
-      <line x1="14" y1="10" x2="30" y2="6" stroke="#a8d8ea" stroke-width="2.5" stroke-linecap="round"/>
-      <line x1="30" y1="6" x2="30" y2="28" stroke="#a8d8ea" stroke-width="2.5" stroke-linecap="round"/>
-      <ellipse cx="27" cy="30" rx="7" ry="5" fill="none" stroke="#a8d8ea" stroke-width="2.5" transform="rotate(-12 27 30)"/>
+    <svg class="dk-1" width="32" height="42" viewBox="0 0 32 42" fill="none" opacity="0.22">
+      <line x1="11" y1="30" x2="11" y2="8"  stroke="#9dd4b8" stroke-width="2.5" stroke-linecap="round"/>
+      <ellipse cx="8" cy="32" rx="6" ry="4.5" fill="none" stroke="#9dd4b8" stroke-width="2.5" transform="rotate(-10 8 32)"/>
+      <line x1="11" y1="8" x2="24" y2="4" stroke="#9dd4b8" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="24" y1="4" x2="24" y2="22" stroke="#9dd4b8" stroke-width="2.5" stroke-linecap="round"/>
+      <ellipse cx="21" cy="24" rx="6" ry="4.5" fill="none" stroke="#9dd4b8" stroke-width="2.5" transform="rotate(-10 21 24)"/>
+    </svg>
+
+    <!-- Star -->
+    <svg class="dk-2" width="36" height="36" viewBox="0 0 36 36" fill="none" opacity="0.2">
+      <path d="M18 3 l3.5 10.5 H32 l-9 6.5 3.5 10.5 -9-6.5 -9 6.5 3.5-10.5 -9-6.5 h10.5z"
+            fill="none" stroke="#f9dc6e" stroke-width="2" stroke-linejoin="round"/>
     </svg>
 
     <!-- Heart -->
-    <svg class="d4" width="46" height="42" viewBox="0 0 46 42">
-      <path d="M23 37 C6 26 2 14 8 8 C12 4 18 5 23 11 C28 5 34 4 38 8 C44 14 40 26 23 37z"
-            fill="none" stroke="#f4a38a" stroke-width="2.5" stroke-linejoin="round"/>
+    <svg class="dk-3" width="36" height="33" viewBox="0 0 36 33" fill="none" opacity="0.18">
+      <path d="M18 29 C4 20 1 10 6 5 Q10 1 14 4 Q16 6 18 9 Q20 6 22 4 Q26 1 30 5 C35 10 32 20 18 29z"
+            fill="none" stroke="#f4a98c" stroke-width="2.5" stroke-linejoin="round"/>
+    </svg>
+
+    <!-- Moon -->
+    <svg class="dk-4" width="34" height="36" viewBox="0 0 34 36" fill="none" opacity="0.2">
+      <path d="M20 4 Q6 10 6 18 Q6 28 18 32 Q5 30 3 18 Q1 6 14 3z"
+            fill="none" stroke="#c5b3e6" stroke-width="2.5" stroke-linecap="round"/>
     </svg>
 
     <!-- Cloud -->
-    <svg class="d5" width="60" height="36" viewBox="0 0 60 36">
-      <path d="M12 28 Q4 28 4 20 Q4 13 11 13 Q11 6 18 5 Q25 4 28 10 Q32 6 38 8 Q44 10 44 16 Q50 16 50 22 Q50 28 42 28z"
-            fill="none" stroke="#b8e0c8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <svg class="dk-5" width="52" height="30" viewBox="0 0 52 30" fill="none" opacity="0.18">
+      <path d="M10 24 Q3 24 3 17 Q3 11 9 11 Q9 5 15 4 Q21 3 23 8 Q27 5 32 7 Q37 9 37 14 Q43 14 43 19 Q43 24 36 24z"
+            fill="none" stroke="#a8d8ea" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
 
     <!-- Sparkle -->
-    <svg class="d6" width="40" height="40" viewBox="0 0 40 40">
-      <line x1="20" y1="2"  x2="20" y2="38" stroke="#c9b8e8" stroke-width="2" stroke-linecap="round"/>
-      <line x1="2"  y1="20" x2="38" y2="20" stroke="#c9b8e8" stroke-width="2" stroke-linecap="round"/>
-      <line x1="7"  y1="7"  x2="33" y2="33" stroke="#c9b8e8" stroke-width="1.5" stroke-linecap="round"/>
-      <line x1="33" y1="7"  x2="7"  y2="33" stroke="#c9b8e8" stroke-width="1.5" stroke-linecap="round"/>
+    <svg class="dk-6" width="30" height="30" viewBox="0 0 30 30" fill="none" opacity="0.18">
+      <line x1="15" y1="1"  x2="15" y2="29" stroke="#c5b3e6" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="1"  y1="15" x2="29" y2="15" stroke="#c5b3e6" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="5"  y1="5"  x2="25" y2="25" stroke="#c5b3e6" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="25" y1="5"  x2="5"  y2="25" stroke="#c5b3e6" stroke-width="1.2" stroke-linecap="round"/>
+    </svg>
+
+    <!-- Small star 2 -->
+    <svg class="dk-7" width="22" height="22" viewBox="0 0 22 22" fill="none" opacity="0.22">
+      <path d="M11 2 l2.2 6.5H20l-5.5 4 2.2 6.5 -5.7-4 -5.7 4 2.2-6.5 -5.5-4 h6.8z"
+            fill="#f4a98c" opacity="0.5"/>
     </svg>
   </div>
 
   <!-- ============================================================
-       PAGE CONTENT
+       PAGE
        ============================================================ -->
-  <main class="page-wrap">
+  <div class="page">
 
     <!-- HEADER -->
-    <header class="app-header">
-      <div class="header-badge">✨ For tiny humans & tired grown-ups</div>
-      <h1 class="app-title">Tiny <span>Songs</span> &amp; Moments</h1>
-      <p class="app-subtitle">
-        A gentle nudge toward song, touch, and connection —<br>
-        perfectly sized for right now.
-      </p>
-      <!-- Hand-drawn wave -->
-      <svg class="wave-divider" viewBox="0 0 120 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M2 8 Q15 2 28 8 Q41 14 54 8 Q67 2 80 8 Q93 14 106 8 Q113 5 118 7"
-              stroke="#c9b8e8" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>
+    <header class="app-header fade-in">
+      <div class="header-blob"></div>
+      <div class="header-content">
+        <div class="header-eyebrow">
+          <!-- Hand-drawn baby icon -->
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+            <circle cx="6.5" cy="4" r="2.8" fill="none" stroke="#6b5548" stroke-width="1.5"/>
+            <path d="M1 12 Q2 8 6.5 8 Q11 8 12 12" fill="none" stroke="#6b5548" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          For tiny people &amp; tired grown-ups
+        </div>
+        <h1 class="app-title">Tiny <em>Songs</em> for<br>Magic Moments</h1>
+        <p class="app-tagline">A gentle nudge toward song, sensory, and connection —<br>perfectly sized for right now.</p>
+        <svg class="wave-rule" viewBox="0 0 100 12" fill="none">
+          <path d="M1 6 Q12 1 23 6 Q34 11 45 6 Q56 1 67 6 Q78 11 89 6 Q94 3.5 99 5"
+                stroke="#c5b3e6" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
     </header>
 
-    <!-- QUESTION 1: AGE SLIDER -->
-    <section class="card" aria-label="Baby's age">
-      <div class="card-label">
-        <span class="icon">🌙</span>
-        How old is your little one?
+    <!-- Q1: AGE SLIDER -->
+    <div class="section-label fade-in">
+      <!-- Moon icon -->
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path d="M12 2.5 Q4 5 4 9 Q4 14 10 16 Q3 14.5 2 9 Q1 3.5 8 1.5z"
+              fill="none" stroke="#6b5548" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      How old is your little one?
+    </div>
+
+    <div class="card card--sky fade-in" aria-label="Baby's age">
+
+      <!-- Age big display -->
+      <div class="age-hero">
+        <div class="age-big" id="ageDisplay">0</div>
+        <div class="age-label" id="ageLabel">newborn magic ✨</div>
       </div>
 
-      <div class="age-display">
-        <div class="age-number" id="ageDisplay">0</div>
-        <div class="age-unit" id="ageUnit">months old — newborn magic ✨</div>
+      <!-- Milestone dots -->
+      <div class="age-milestones" aria-hidden="true" id="milestoneDots">
+        <!-- Generated by JS -->
       </div>
 
-      <!-- Slider: 0–12 months -->
-      <input
-        type="range"
-        id="ageSlider"
-        min="0" max="12" value="0" step="1"
-        aria-label="Baby age in months"
-        aria-valuemin="0" aria-valuemax="12" aria-valuenow="0"
-      />
+      <!-- Slider -->
+      <input type="range" id="ageSlider"
+             min="0" max="12" value="0" step="1"
+             aria-label="Baby age in months"
+             aria-valuemin="0" aria-valuemax="12" aria-valuenow="0" />
+    </div>
 
-      <!-- Tick labels -->
-      <div class="age-ticks" aria-hidden="true">
-        <span>0</span><span>2</span><span>4</span><span>6</span>
-        <span>8</span><span>10</span><span>12</span>
-      </div>
-    </section>
+    <!-- Q2: MOOD SELECTOR -->
+    <div class="section-label fade-in">
+      <!-- Cloud icon -->
+      <svg width="20" height="14" viewBox="0 0 20 14" fill="none">
+        <path d="M4 12 Q1 12 1 8.5 Q1 5.5 4 5.5 Q4 2 7 1.5 Q10 1 11.5 4 Q13 2 16 3 Q19 4 19 7 Q19 10 16 10 Q19 10 17 12z"
+              fill="none" stroke="#6b5548" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      What's the vibe right now?
+    </div>
 
-    <!-- QUESTION 2: MOOD SELECTOR -->
-    <section class="card" aria-label="Baby's current mood">
-      <div class="card-label">
-        <span class="icon">☁️</span>
-        What's the vibe right now?
-      </div>
-
+    <div class="card card--lavender fade-in" aria-label="Baby's mood">
       <div class="mood-grid" role="group" aria-label="Select mood">
-        <!-- Calm -->
+
+        <!-- CALM -->
         <button class="mood-btn" data-mood="calm" aria-pressed="false" type="button">
-          <!-- Hand-drawn calm face SVG -->
-          <svg class="emoji" viewBox="0 0 48 48" width="40" height="40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="24" cy="24" r="20" fill="#d6eef7" stroke="#3a3530" stroke-width="2"/>
-            <circle cx="17" cy="20" r="2.5" fill="#3a3530"/>
-            <circle cx="31" cy="20" r="2.5" fill="#3a3530"/>
-            <!-- Relaxed soft smile -->
-            <path d="M17 31 Q24 36 31 31" stroke="#3a3530" stroke-width="2" stroke-linecap="round" fill="none"/>
-            <!-- Closed relaxed eyes -->
-            <path d="M14 19 Q17 17 20 19" stroke="#3a3530" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-            <path d="M28 19 Q31 17 34 19" stroke="#3a3530" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          <svg class="mood-face" viewBox="0 0 52 52" fill="none">
+            <!-- Watercolour circle fill -->
+            <circle cx="26" cy="26" r="22" fill="#dff1f8" stroke="#6bb8d4" stroke-width="1.5"/>
+            <!-- Cheeks -->
+            <ellipse cx="16" cy="32" rx="5" ry="3" fill="#a8d8ea" opacity="0.4"/>
+            <ellipse cx="36" cy="32" rx="5" ry="3" fill="#a8d8ea" opacity="0.4"/>
+            <!-- Closed sleepy eyes -->
+            <path d="M17 22 Q20 19 23 22" stroke="#3d2f28" stroke-width="2" stroke-linecap="round" fill="none"/>
+            <path d="M29 22 Q32 19 35 22" stroke="#3d2f28" stroke-width="2" stroke-linecap="round" fill="none"/>
+            <!-- Soft smile -->
+            <path d="M19 33 Q26 38 33 33" stroke="#3d2f28" stroke-width="2" stroke-linecap="round" fill="none"/>
+            <!-- ZZZ -->
+            <text x="38" y="16" font-size="7" fill="#6bb8d4" font-family="serif" opacity="0.8">z</text>
+            <text x="41" y="12" font-size="5" fill="#6bb8d4" font-family="serif" opacity="0.6">z</text>
           </svg>
-          Calm &amp; Sleepy
+          <span class="mood-label">Calm &amp; Sleepy</span>
         </button>
 
-        <!-- Playful -->
+        <!-- PLAYFUL -->
         <button class="mood-btn" data-mood="playful" aria-pressed="false" type="button">
-          <svg class="emoji" viewBox="0 0 48 48" width="40" height="40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="24" cy="24" r="20" fill="#fff3c0" stroke="#3a3530" stroke-width="2"/>
-            <circle cx="17" cy="20" r="2.5" fill="#3a3530"/>
-            <circle cx="31" cy="20" r="2.5" fill="#3a3530"/>
-            <!-- Big smile with teeth shape -->
-            <path d="M15 30 Q24 40 33 30" stroke="#3a3530" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <svg class="mood-face" viewBox="0 0 52 52" fill="none">
+            <circle cx="26" cy="26" r="22" fill="#fef7d0" stroke="#e8c74a" stroke-width="1.5"/>
+            <!-- Cheeks -->
+            <ellipse cx="15" cy="31" rx="5" ry="3.5" fill="#f9dc6e" opacity="0.5"/>
+            <ellipse cx="37" cy="31" rx="5" ry="3.5" fill="#f9dc6e" opacity="0.5"/>
             <!-- Sparkle eyes -->
-            <circle cx="16" cy="18.5" r="1" fill="#f9e07f"/>
-            <circle cx="30" cy="18.5" r="1" fill="#f9e07f"/>
-            <!-- Raised eyebrows -->
-            <path d="M14 16 Q17 13 20 15" stroke="#3a3530" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-            <path d="M28 15 Q31 13 34 16" stroke="#3a3530" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            <circle cx="19" cy="22" r="3" fill="#3d2f28"/>
+            <circle cx="33" cy="22" r="3" fill="#3d2f28"/>
+            <circle cx="20.5" cy="20.5" r="1.2" fill="white"/>
+            <circle cx="34.5" cy="20.5" r="1.2" fill="white"/>
+            <!-- Big grin -->
+            <path d="M16 32 Q26 42 36 32" stroke="#3d2f28" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+            <!-- Raised brows -->
+            <path d="M16 17 Q19 14 22 16" stroke="#3d2f28" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            <path d="M30 16 Q33 14 36 17" stroke="#3d2f28" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            <!-- Sparkles -->
+            <text x="6"  y="14" font-size="8" opacity="0.7">✦</text>
+            <text x="38" y="12" font-size="6" opacity="0.6">✦</text>
           </svg>
-          Alert &amp; Playful
+          <span class="mood-label">Alert &amp; Playful</span>
         </button>
 
-        <!-- Fussy -->
+        <!-- FUSSY -->
         <button class="mood-btn" data-mood="fussy" aria-pressed="false" type="button">
-          <svg class="emoji" viewBox="0 0 48 48" width="40" height="40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="24" cy="24" r="20" fill="#fce4dc" stroke="#3a3530" stroke-width="2"/>
-            <circle cx="17" cy="22" r="2.5" fill="#3a3530"/>
-            <circle cx="31" cy="22" r="2.5" fill="#3a3530"/>
-            <!-- Downward mouth (fussy) -->
-            <path d="M17 34 Q24 29 31 34" stroke="#3a3530" stroke-width="2" stroke-linecap="round" fill="none"/>
-            <!-- Worried eyebrows -->
-            <path d="M13 18 Q16 15 20 17" stroke="#3a3530" stroke-width="2" stroke-linecap="round" fill="none"/>
-            <path d="M28 17 Q32 15 35 18" stroke="#3a3530" stroke-width="2" stroke-linecap="round" fill="none"/>
-            <!-- Tear drops -->
-            <ellipse cx="12" cy="28" rx="2" ry="3" fill="#a8d8ea" opacity="0.8"/>
-            <ellipse cx="36" cy="28" rx="2" ry="3" fill="#a8d8ea" opacity="0.8"/>
+          <svg class="mood-face" viewBox="0 0 52 52" fill="none">
+            <circle cx="26" cy="26" r="22" fill="#fde9e0" stroke="#e07d5a" stroke-width="1.5"/>
+            <!-- Cheeks (rosy) -->
+            <ellipse cx="15" cy="30" rx="5" ry="3" fill="#f4a98c" opacity="0.45"/>
+            <ellipse cx="37" cy="30" rx="5" ry="3" fill="#f4a98c" opacity="0.45"/>
+            <!-- Eyes — worried -->
+            <circle cx="19" cy="22" r="2.8" fill="#3d2f28"/>
+            <circle cx="33" cy="22" r="2.8" fill="#3d2f28"/>
+            <!-- Downturned mouth -->
+            <path d="M18 35 Q26 29 34 35" stroke="#3d2f28" stroke-width="2" stroke-linecap="round" fill="none"/>
+            <!-- Worry brows -->
+            <path d="M14 17 Q18 14 21 17" stroke="#3d2f28" stroke-width="2" stroke-linecap="round" fill="none"/>
+            <path d="M31 17 Q34 14 38 17" stroke="#3d2f28" stroke-width="2" stroke-linecap="round" fill="none"/>
+            <!-- Tears -->
+            <ellipse cx="13" cy="28" rx="2" ry="3" fill="#a8d8ea" opacity="0.75"/>
+            <ellipse cx="39" cy="28" rx="2" ry="3" fill="#a8d8ea" opacity="0.75"/>
           </svg>
-          Fussy &amp; Unsettled
+          <span class="mood-label">Fussy &amp; Unsettled</span>
         </button>
-      </div>
-    </section>
 
-    <!-- GET ACTIVITY BUTTON -->
-    <button class="btn-get" id="getActivityBtn" type="button" disabled>
-      🎵 Find our moment →
+      </div>
+    </div>
+
+    <!-- CTA BUTTON -->
+    <button class="btn-primary fade-in" id="getActivityBtn" type="button" disabled>
+      <span class="btn-icon">🎵</span>
+      Find our moment →
     </button>
 
-    <!-- RESULT CARD (hidden until activity is shown) -->
+    <!-- RESULT CARD -->
     <div class="result-card" id="resultCard" role="region" aria-live="polite" aria-label="Suggested activity">
-      <div class="result-sparkles" aria-hidden="true">✨🌟</div>
-      <div class="result-tag" id="resultTag"></div>
-      <div class="result-song-title" id="resultSong"></div>
-      <div class="result-context-badge" id="resultContext"></div>
-      <div class="result-activity-title">🌿 Try this together</div>
-      <div class="result-activity-desc" id="resultActivity"></div>
-      <div class="result-tip" id="resultTip"></div>
+      <div class="result-band"></div>
+      <div class="result-body">
+        <div class="result-blob"></div>
+
+        <!-- Song row -->
+        <div class="result-song-row">
+          <div class="result-song-icon" id="resultIcon"></div>
+          <div class="result-song-meta">
+            <div class="result-mood-tag" id="resultTag"></div>
+            <div class="result-song-name" id="resultSong"></div>
+            <div class="result-context" id="resultContext"></div>
+          </div>
+        </div>
+
+        <div class="result-divider"></div>
+
+        <!-- Activity -->
+        <div class="result-activity-label">
+          <!-- Leaf icon -->
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2 12 Q4 6 8 4 Q13 2 12 7 Q11 12 5 12 Q3.5 12 2 12z"
+                  fill="none" stroke="#6b5548" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M2 12 Q6 9 9 6" stroke="#6b5548" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          Try this together
+        </div>
+        <div class="result-activity-text" id="resultActivity"></div>
+
+        <!-- Tip box -->
+        <div class="result-tip-box">
+          <div class="result-tip-label">
+            <!-- Star icon -->
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M7 1 l1.6 4.5H13l-3.9 2.8 1.5 4.7 -3.6-2.6 -3.6 2.6 1.5-4.7 -3.9-2.8 h4.4z"
+                    fill="#e8c74a" stroke="#e8c74a" stroke-width="0.5"/>
+            </svg>
+            For you, grown-up
+          </div>
+          <div class="result-tip-text" id="resultTip"></div>
+        </div>
+
+        <!-- Try another -->
+        <button class="btn-secondary" id="tryAnotherBtn" type="button">
+          🔀 Try another moment
+        </button>
+
+      </div>
     </div>
 
     <!-- FOOTER -->
     <footer class="app-footer">
-      <p>Made with 💛 for caregivers everywhere &nbsp;·&nbsp; grounded in developmental science</p>
+      Made with 💛 for humans both big and small · grounded in science.
     </footer>
-  </main>
+
+  </div><!-- /page -->
 
   <!-- ============================================================
-       JAVASCRIPT — Activity data + interactions
+       JAVASCRIPT
        ============================================================ -->
   <script>
     /* ----------------------------------------------------------
-       ACTIVITY DATABASE
-       Each entry has:
-         - id: unique string
-         - song: well-known song name
-         - ageMin / ageMax: months (inclusive)
-         - mood: 'calm' | 'playful' | 'fussy'
-         - context: short label for when/where
-         - activity: what the caregiver does with the baby
-         - tip: warm, permission-giving note for the adult
+       ACTIVITY DATABASE — 26 entries total
+       Each entry: id, song, icon, ageMin, ageMax, mood, context, activity, tip
     ---------------------------------------------------------- */
     const activities = [
 
-      /* ---- CALM / SLEEPY ---- */
+      /* ===================== CALM / SLEEPY ===================== */
       {
-        id: "c1",
+        id: "c1", icon: "⭐",
         song: "Twinkle, Twinkle, Little Star",
-        ageMin: 0, ageMax: 3,
-        mood: "calm",
+        ageMin: 0, ageMax: 3, mood: "calm",
         context: "🌙 settling or bedtime",
-        activity:
-          "Hold your baby close to your chest so they can feel your heartbeat. Hum softly and sway side to side — slow and steady, like a boat on a quiet sea. Let your voice be warm and low.",
-        tip: "✨ You don't need a perfect singing voice. Your voice is the most magical sound in the world to them right now."
+        activity: "Hold your baby close to your chest so they can feel your heartbeat. Hum softly and sway side to side — slow and steady, like a boat on a quiet sea. Let your voice be warm and low.",
+        tip: "You don't need a perfect singing voice. Your voice is the most magical sound in the world to them right now."
       },
       {
-        id: "c2",
+        id: "c2", icon: "🌙",
         song: "Rock-a-bye Baby",
-        ageMin: 0, ageMax: 5,
-        mood: "calm",
+        ageMin: 0, ageMax: 5, mood: "calm",
         context: "🌙 naptime or wind-down",
-        activity:
-          "Lay your baby on your lap facing up. Gently rock your knees side to side as you sing. Trail your fingertips very lightly across their tummy in slow circles.",
-        tip: "✨ Slow rhythm signals safety to a newborn nervous system. There's no rush — stay here as long as you both need."
+        activity: "Lay your baby on your lap facing up. Gently rock your knees side to side as you sing. Trail your fingertips very lightly across their tummy in slow circles.",
+        tip: "Slow rhythm signals safety to a newborn nervous system. There's no rush — stay here as long as you both need."
       },
       {
-        id: "c3",
+        id: "c3", icon: "🌿",
         song: "Hush, Little Baby",
-        ageMin: 3, ageMax: 7,
-        mood: "calm",
+        ageMin: 3, ageMax: 7, mood: "calm",
         context: "🌿 quiet moment or feed",
-        activity:
-          "Sing each verse while stroking their cheek, forehead, or fingers in time with the beat. Let your touch be the rhythm — slow brushes for slow words.",
-        tip: "✨ Touch and voice together build your baby's sense of security and body awareness at the same time."
+        activity: "Sing each verse while stroking their cheek, forehead, or fingers in time with the beat. Let your touch be the rhythm — slow brushes for slow words.",
+        tip: "Touch and voice together build your baby's sense of security and body awareness at the same time."
       },
       {
-        id: "c4",
+        id: "c4", icon: "☀️",
         song: "You Are My Sunshine",
-        ageMin: 4, ageMax: 12,
-        mood: "calm",
+        ageMin: 4, ageMax: 12, mood: "calm",
         context: "🌤 morning or feed time",
-        activity:
-          "Sit your baby upright on your lap, face-to-face. Sing with gentle eye contact and give soft pats on their back on the beat. Pause between verses for them to 'respond' with sounds or expressions.",
-        tip: "✨ These pauses are the first conversations. Wait, watch, and wonder together."
+        activity: "Sit your baby upright on your lap, face-to-face. Sing with gentle eye contact and give soft pats on their back on the beat. Pause between verses for them to 'respond' with sounds or expressions.",
+        tip: "These pauses are the first conversations. Wait, watch, and wonder together."
       },
       {
-        id: "c5",
+        id: "c5", icon: "🌟",
         song: "Golden Slumbers",
-        ageMin: 6, ageMax: 12,
-        mood: "calm",
+        ageMin: 6, ageMax: 12, mood: "calm",
         context: "🌙 evening or sleep time",
-        activity:
-          "Carry your baby in a dim, quiet space. Walk in slow circles as you sing, letting your footsteps set the pace. Gently press your cheek against their head.",
-        tip: "✨ The gentle pressure of your hold releases oxytocin in both of you. This moment is nourishing for you too."
+        activity: "Carry your baby in a dim, quiet space. Walk in slow circles as you sing, letting your footsteps set the pace. Gently press your cheek against their head.",
+        tip: "The gentle pressure of your hold releases oxytocin in both of you. This moment is nourishing for you too."
       },
 
-      /* ---- PLAYFUL / ALERT ---- */
+      /* ==================== PLAYFUL / ALERT ==================== */
       {
-        id: "p1",
+        id: "p1", icon: "👏",
         song: "If You're Happy and You Know It",
-        ageMin: 5, ageMax: 12,
-        mood: "playful",
+        ageMin: 5, ageMax: 8, mood: "playful",
         context: "☀️ playtime or after a nap",
-        activity:
-          "Sit face to face with your baby. Clap their little hands together on 'clap your hands', tap their feet on 'stomp your feet'. Watch their face light up with each repeated verse — they're already learning patterns!",
-        tip: "✨ Repetition is how babies learn to predict and then delight in 'knowing what's coming'. You're building their brain architecture right now."
+        activity: "Sit face to face with your baby. Clap their little hands together on 'clap your hands', tap their feet on 'stomp your feet'. Watch their face light up with each repeated verse — they're already learning patterns!",
+        tip: "Repetition is how babies learn to predict and then delight in 'knowing what's coming'. You're building their brain architecture right now."
       },
       {
-        id: "p2",
+        id: "p2", icon: "🚌",
         song: "The Wheels on the Bus",
-        ageMin: 4, ageMax: 12,
-        mood: "playful",
+        ageMin: 4, ageMax: 12, mood: "playful",
         context: "🚌 any alert moment",
-        activity:
-          "Make the movements big and silly — round and round for the wheels, open/close hands for the doors. Hold your baby's hands and guide them through the motions. Change your voice for each verse.",
-        tip: "✨ Big, predictable gestures help babies begin to connect actions with words. Silly is science here."
+        activity: "Make the movements big and silly — round and round for the wheels, open and close hands for the doors. Hold your baby's hands and guide them through the motions. Change your voice for each verse.",
+        tip: "Big, predictable gestures help babies begin to connect actions with words. Silly is science here."
       },
       {
-        id: "p3",
+        id: "p3", icon: "🤸",
         song: "Head, Shoulders, Knees and Toes",
-        ageMin: 6, ageMax: 12,
-        mood: "playful",
+        ageMin: 6, ageMax: 12, mood: "playful",
         context: "☀️ mat time or morning",
-        activity:
-          "With your baby lying on their back, gently touch each body part as you name it in the song. From 3 months, they'll begin to watch your face and hands with focus — an early body map is forming.",
-        tip: "✨ Body awareness is a foundation of emotional regulation. Songs like this do more than entertain."
+        activity: "With your baby lying on their back, gently touch each body part as you name it in the song. From 3 months, they'll begin to watch your face and hands with focus — an early body map is forming.",
+        tip: "Body awareness is a foundation of emotional regulation. Songs like this do more than entertain."
       },
       {
-        id: "p4",
+        id: "p4", icon: "🎂",
         song: "Pat-a-Cake",
-        ageMin: 3, ageMax: 9,
-        mood: "playful",
+        ageMin: 3, ageMax: 9, mood: "playful",
         context: "🎂 anytime — especially after feeds",
-        activity:
-          "Take your baby's hands in yours and clap a simple rhythm. Don't worry about the 'right' words — improvise with their name. 'Pat-a-cake, pat-a-cake, baker's friend, make me a cake for little [name] to send!'",
-        tip: "✨ Hearing their own name sung teaches babies that they are known and valued. This is identity-building in miniature."
+        activity: "Take your baby's hands in yours and clap a simple rhythm. Improvise with their name: 'Pat-a-cake, pat-a-cake, baker's friend, make me a cake for little [name] to send!'",
+        tip: "Hearing their own name sung teaches babies that they are known and valued. This is identity-building in miniature."
       },
       {
-        id: "p5",
+        id: "p5", icon: "🚣",
         song: "Row, Row, Row Your Boat",
-        ageMin: 2, ageMax: 8,
-        mood: "playful",
+        ageMin: 2, ageMax: 8, mood: "playful",
         context: "🛁 bathtime or after a nap",
-        activity:
-          "Sit your baby on your outstretched legs. Hold their hands and gently rock forward and back as you sing. Start slow and build to a gentle 'whee!' on 'life is but a dream'.",
-        tip: "✨ Vestibular movement (rocking and swaying) is essential for balance development and nervous system regulation."
-      },
-
-      /* ---- FUSSY / UNSETTLED ---- */
-      {
-        id: "f1",
-        song: "Hush Now, Quiet Now (Lullaby)",
-        ageMin: 0, ageMax: 4,
-        mood: "fussy",
-        context: "😢 any unsettled moment",
-        activity:
-          "Hold your baby upright against your chest, tummy-to-tummy. One hand supports their bottom, the other presses warmly against their back. Sway deeply and hum — no words needed. Let the vibration do the work.",
-        tip: "✨ You are enough. Being held by someone who loves them is the oldest, most effective comfort in the world."
+        activity: "Sit your baby on your outstretched legs. Hold their hands and gently rock forward and back as you sing. Start slow and build to a gentle 'whee!' on 'life is but a dream'.",
+        tip: "Vestibular movement (rocking and swaying) is essential for balance development and nervous system regulation."
       },
       {
-        id: "f2",
-        song: "Somewhere Over the Rainbow",
-        ageMin: 0, ageMax: 6,
-        mood: "fussy",
-        context: "😢 overtired or overstimulated",
-        activity:
-          "Dim the lights if you can. Wrap your baby snugly and carry them while you hum this gently. Don't sing the words — just hum the melody, long and slow, one phrase at a time.",
-        tip: "✨ When babies are overwhelmed, reducing stimulation and keeping your own breath slow sends a calming signal through your body into theirs."
-      },
-      {
-        id: "f3",
-        song: "Brahms' Lullaby (Lullaby and Goodnight)",
-        ageMin: 0, ageMax: 5,
-        mood: "fussy",
-        context: "😢 evening or settling",
-        activity:
-          "Walk slowly through a quiet room, swaying from side to side. Lay your hand warmly over their chest and breathe slowly and loudly enough that they can hear you. Your rhythmic breathing becomes a metronome for theirs.",
-        tip: "✨ Co-regulation is not 'spoiling' — it's how babies learn to self-regulate later. You are their external nervous system right now."
-      },
-      {
-        id: "f4",
-        song: "The More We Get Together",
-        ageMin: 5, ageMax: 12,
-        mood: "fussy",
-        context: "😢 needing connection",
-        activity:
-          "Get close — really close — so your faces are only 20–30cm apart. Sing softly and wait. Make exaggerated gentle expressions. Watch for any tiny movement in their face that shows they're connecting with you.",
-        tip: "✨ At 20–30cm distance, newborns can focus perfectly on your face. This is the original connection technology."
-      },
-      {
-        id: "f5",
-        song: "Swing Low, Sweet Chariot",
-        ageMin: 3, ageMax: 12,
-        mood: "fussy",
-        context: "😢 in arms, any time",
-        activity:
-          "Place your baby in a gentle cradle hold — one arm under the knees, one under the back. Sway slowly in a figure-eight pattern while humming. The curved motion mimics the womb.",
-        tip: "✨ Figure-eight movement engages both sides of the brain. It's soothing and regulating at once."
-      },
-
-      /* ---- BATHTIME BONUS ---- */
-      {
-        id: "b1",
-        song: "Rubber Duckie (Sesame Street)",
-        ageMin: 3, ageMax: 12,
-        mood: "playful",
+        id: "b1", icon: "🛁",
+        song: "Rubber Duckie",
+        ageMin: 3, ageMax: 12, mood: "playful",
         context: "🛁 bathtime",
-        activity:
-          "Gently pour warm water over your baby's tummy in time with the melody. Name each part of their body as you wash it. Use a slow, sing-song voice: 'Now we wash your little toes...'",
-        tip: "✨ Warm water, touch, and your voice during bath create a powerful sensory ritual that babies come to associate with relaxation."
+        activity: "Gently pour warm water over your baby's tummy in time with the melody. Name each part of their body as you wash it. Use a slow, sing-song voice: 'Now we wash your little toes...'",
+        tip: "Warm water, touch, and your voice during bath create a powerful sensory ritual that babies come to associate with relaxation."
       },
 
-      /* ---- NEW ACTIVITIES — 0 to 3 months ---- */
+      /* ==================== FUSSY / UNSETTLED ================== */
       {
-        id: "n1",
+        id: "f1", icon: "🤗",
+        song: "Hush Now, Quiet Now",
+        ageMin: 0, ageMax: 4, mood: "fussy",
+        context: "😢 any unsettled moment",
+        activity: "Hold your baby upright against your chest, tummy-to-tummy. One hand supports their bottom, the other presses warmly against their back. Sway deeply and hum — no words needed. Let the vibration do the work.",
+        tip: "You are enough. Being held by someone who loves them is the oldest, most effective comfort in the world."
+      },
+      {
+        id: "f2", icon: "🌈",
+        song: "Somewhere Over the Rainbow",
+        ageMin: 0, ageMax: 6, mood: "fussy",
+        context: "😢 overtired or overstimulated",
+        activity: "Dim the lights if you can. Wrap your baby snugly and carry them while you hum this gently. Don't sing the words — just hum the melody, long and slow, one phrase at a time.",
+        tip: "When babies are overwhelmed, reducing stimulation and keeping your own breath slow sends a calming signal through your body into theirs."
+      },
+      {
+        id: "f3", icon: "🌙",
+        song: "Brahms' Lullaby",
+        ageMin: 0, ageMax: 5, mood: "fussy",
+        context: "😢 evening or settling",
+        activity: "Walk slowly through a quiet room, swaying from side to side. Lay your hand warmly over their chest and breathe slowly and loudly enough that they can hear you. Your rhythmic breathing becomes a metronome for theirs.",
+        tip: "Co-regulation is not 'spoiling' — it's how babies learn to self-regulate later. You are their external nervous system right now."
+      },
+      {
+        id: "f4", icon: "💛",
+        song: "The More We Get Together",
+        ageMin: 5, ageMax: 12, mood: "fussy",
+        context: "😢 needing connection",
+        activity: "Get close — really close — so your faces are only 20–30cm apart. Sing softly and wait. Make exaggerated gentle expressions. Watch for any tiny movement in their face that shows they're connecting with you.",
+        tip: "At 20–30cm distance, newborns can focus perfectly on your face. This is the original connection technology."
+      },
+      {
+        id: "f5", icon: "🌊",
+        song: "Swing Low, Sweet Chariot",
+        ageMin: 3, ageMax: 12, mood: "fussy",
+        context: "😢 in arms, any time",
+        activity: "Place your baby in a gentle cradle hold — one arm under the knees, one under the back. Sway slowly in a figure-eight pattern while humming. The curved motion mimics the womb.",
+        tip: "Figure-eight movement engages both sides of the brain. It's soothing and regulating at once."
+      },
+
+      /* ==================== NEW — 0 to 3 months ================ */
+      {
+        id: "n1", icon: "🫶",
         song: "Skinnamarink",
-        ageMin: 0, ageMax: 3,
-        mood: "calm",
+        ageMin: 0, ageMax: 3, mood: "calm",
         context: "🌿 skin-to-skin or feed time",
-        activity:
-          "Lay your newborn on your bare chest and sing this softly, letting your voice vibrate through your skin into theirs. Trace tiny circles on their back with one finger as you hum each phrase. This takes just 3–5 minutes and can be done any time you're both still.",
-        tip: "✨ Skin-to-skin contact in the first months regulates your baby's temperature, heart rate, and cortisol levels — and your oxytocin too. You are literally their medicine right now."
+        activity: "Lay your newborn on your bare chest and sing this softly, letting your voice vibrate through your skin into theirs. Trace tiny circles on their back with one finger as you hum each phrase. This takes just 3–5 minutes and can be done any time you're both still.",
+        tip: "Skin-to-skin contact in the first months regulates your baby's temperature, heart rate, and cortisol levels — and your oxytocin too. You are literally their medicine right now."
       },
       {
-        id: "n2",
+        id: "n2", icon: "🌙",
         song: "Sleep, Baby, Sleep",
-        ageMin: 0, ageMax: 3,
-        mood: "fussy",
+        ageMin: 0, ageMax: 3, mood: "fussy",
         context: "😢 overstimulated or overtired",
-        activity:
-          "Swaddle your baby snugly, hold them against your shoulder, and walk slowly back and forth while singing in a low, steady monotone — same pitch, same pace, every verse. Let the rhythm be as predictable as a heartbeat. This works best for 5–10 minutes of continuous gentle motion.",
-        tip: "✨ A monotone, repetitive voice is more settling than an expressive one for very young babies — it mimics the muffled, rhythmic sounds of the womb they still remember."
+        activity: "Swaddle your baby snugly, hold them against your shoulder, and walk slowly back and forth while singing in a low, steady monotone — same pitch, same pace, every verse. Let the rhythm be as predictable as a heartbeat. This works best for 5–10 minutes of continuous gentle motion.",
+        tip: "A monotone, repetitive voice is more settling than an expressive one for very young babies — it mimics the muffled, rhythmic sounds of the womb they still remember."
       },
       {
-        id: "n3",
+        id: "n3", icon: "🐑",
         song: "Mary Had a Little Lamb",
-        ageMin: 0, ageMax: 3,
-        mood: "playful",
+        ageMin: 0, ageMax: 3, mood: "playful",
         context: "☀️ alert window after a feed",
-        activity:
-          "Hold your baby at arm's length, face-to-face, and sing while gently bobbing them in time with the beat. Pause after each verse and wait — watch their eyes widen and their mouth move as they 'talk back' to you with tiny sounds and expressions. This takes about 5 minutes and is best in a bright, calm space.",
-        tip: "✨ Newborns have alert windows of only 45–60 minutes between sleeps. This face-to-face exchange activates the social brain and is the earliest form of conversation your baby will ever have."
+        activity: "Hold your baby at arm's length, face-to-face, and sing while gently bobbing them in time with the beat. Pause after each verse and wait — watch their eyes widen and their mouth move as they 'talk back' with tiny sounds and expressions. About 5 minutes, best in a bright, calm space.",
+        tip: "Newborns have alert windows of only 45–60 minutes between sleeps. This face-to-face exchange activates the social brain and is the earliest form of conversation your baby will ever have."
       },
 
-      /* ---- NEW ACTIVITIES — 3 to 6 months ---- */
+      /* ==================== NEW — 3 to 6 months ================ */
       {
-        id: "n4",
+        id: "n4", icon: "🕷️",
         song: "Itsy Bitsy Spider",
-        ageMin: 3, ageMax: 6,
-        mood: "playful",
+        ageMin: 3, ageMax: 6, mood: "playful",
         context: "☀️ tummy time or mat play",
-        activity:
-          "Sit in front of your baby during tummy time and perform the hand movements slowly and dramatically — spider climbing, rain falling, sun coming out. Make eye contact and pause after each action to let them respond. This activity takes 3–5 minutes and works beautifully to motivate babies to lift their heads.",
-        tip: "✨ Tummy time builds the neck, shoulder, and core strength needed for sitting and crawling. Giving your baby something interesting to look at — your face and moving hands — is the kindest way to make it feel like play, not work."
+        activity: "Sit in front of your baby during tummy time and perform the hand movements slowly and dramatically — spider climbing, rain falling, sun coming out. Make eye contact and pause after each action. This takes 3–5 minutes and beautifully motivates babies to lift their heads.",
+        tip: "Tummy time builds the neck, shoulder, and core strength needed for sitting and crawling. Your moving hands and face are the kindest way to make it feel like play, not work."
       },
       {
-        id: "n5",
+        id: "n5", icon: "🐄",
         song: "Old MacDonald Had a Farm",
-        ageMin: 3, ageMax: 6,
-        mood: "playful",
+        ageMin: 3, ageMax: 6, mood: "playful",
         context: "☀️ playtime or after a nap",
-        activity:
-          "Sit your baby on your lap facing outward and make each animal sound right next to their ear — a soft moo, a gentle oink, a quiet cluck. Feel for the moment they still and listen. Repeat each sound twice before moving on, and take about 5–8 minutes to work through several animals.",
-        tip: "✨ Between 3 and 6 months, babies are actively mapping the sounds of their language environment. Varied, expressive vocalisations — even animal ones — are building the auditory foundation for speech."
+        activity: "Sit your baby on your lap facing outward and make each animal sound right next to their ear — a soft moo, a gentle oink, a quiet cluck. Feel for the moment they still and listen. Repeat each sound twice before moving on. Allow 5–8 minutes.",
+        tip: "Between 3 and 6 months, babies are actively mapping the sounds of their language environment. Varied, expressive vocalisations — even animal ones — are building the auditory foundation for speech."
       },
       {
-        id: "n6",
+        id: "n6", icon: "🤝",
         song: "You've Got a Friend in Me",
-        ageMin: 3, ageMax: 6,
-        mood: "calm",
+        ageMin: 3, ageMax: 6, mood: "calm",
         context: "🌤 quiet connection time",
-        activity:
-          "Lay your baby on a soft blanket and lie beside them at the same level, faces close. Sing gently while making slow, soft expressions — a smile, raised eyebrows, a gentle 'O' mouth. Let them lead: if they look away, pause and wait for them to come back. This is a 5–10 minute ritual.",
-        tip: "✨ Looking away is not disinterest — it's self-regulation. Babies this age are learning to manage the intensity of connection. Following their lead teaches them that their signals matter and will always be respected."
+        activity: "Lay your baby on a soft blanket and lie beside them at the same level, faces close. Sing gently while making slow, soft expressions — a smile, raised eyebrows, a gentle 'O' mouth. If they look away, pause and wait for them to come back. A 5–10 minute ritual.",
+        tip: "Looking away is not disinterest — it's self-regulation. Following their lead teaches them that their signals matter and will always be respected."
       },
 
-      /* ---- NEW ACTIVITIES — 6 to 9 months ---- */
+      /* ==================== NEW — 6 to 9 months ================ */
       {
-        id: "n7",
+        id: "n7", icon: "🐻",
         song: "The Bear Went Over the Mountain",
-        ageMin: 6, ageMax: 9,
-        mood: "playful",
+        ageMin: 6, ageMax: 9, mood: "playful",
         context: "☀️ sitting practice or floor play",
-        activity:
-          "Sit your baby between your legs for support and place a soft toy just out of reach in front of them. Sing each verse as they lean and stretch toward it — cheer gently when they get there. Repeat 3–4 times over about 8 minutes, moving the toy to different sides to encourage reaching across the midline.",
-        tip: "✨ Reaching across the body's midline — the invisible line from head to toe — is a critical developmental milestone that connects the left and right brain hemispheres, laying groundwork for reading and writing later."
+        activity: "Sit your baby between your legs and place a soft toy just out of reach. Sing each verse as they lean and stretch toward it — cheer gently when they get there. Move the toy to different sides to encourage reaching across the midline. About 8 minutes over 3–4 rounds.",
+        tip: "Reaching across the body's midline connects the left and right brain hemispheres — a critical milestone that lays groundwork for reading and writing later."
       },
       {
-        id: "n8",
+        id: "n8", icon: "🐷",
         song: "This Little Piggy",
-        ageMin: 6, ageMax: 9,
-        mood: "calm",
+        ageMin: 6, ageMax: 9, mood: "calm",
         context: "🌿 after a bath or nappy change",
-        activity:
-          "Lay your baby on their back and work through each toe slowly, naming it and giving a gentle squeeze or wiggle as you sing. Use a warm, anticipatory voice before 'wee wee wee all the way home' and let them feel the tickle on their tummy. This takes just 3–4 minutes and is perfect as part of a settling routine.",
-        tip: "✨ Foot and toe massage activates nerve endings that connect to the whole body. The anticipation and surprise of this song also builds your baby's first understanding of narrative — something comes, builds, and ends — which is the basis of all storytelling."
+        activity: "Lay your baby on their back and work through each toe slowly, naming it and giving a gentle squeeze or wiggle as you sing. Use a warm, anticipatory voice before 'wee wee wee all the way home'. This takes just 3–4 minutes and is perfect as part of a settling routine.",
+        tip: "Foot and toe massage activates nerve endings that connect to the whole body. The anticipation and surprise of this song also builds your baby's first understanding of narrative — something comes, builds, and ends."
       },
 
-      /* ---- NEW ACTIVITIES — 9 to 12 months ---- */
+      /* ==================== NEW — 9 to 12 months =============== */
       {
-        id: "n9",
+        id: "n9", icon: "🌟",
         song: "If You're Happy and You Know It",
-        ageMin: 9, ageMax: 12,
-        mood: "playful",
+        ageMin: 9, ageMax: 12, mood: "playful",
         context: "☀️ morning or active play",
-        activity:
-          "Stand facing your baby (supported standing or in your arms) and do the actions big and boldly — clap, stomp, shout hooray. Pause before each action and watch: at this age, they may begin to anticipate and attempt the movement themselves. Celebrate every attempt, no matter how small. Allow 8–10 minutes for several joyful rounds.",
-        tip: "✨ Between 9 and 12 months, babies move from watching to doing. Giving them space to attempt actions — and celebrating the trying, not just the succeeding — builds a growth mindset from the very first year of life."
+        activity: "Stand facing your baby (supported standing or in your arms) and do the actions big and boldly — clap, stomp, shout hooray. Pause before each action and watch: at this age they may begin to anticipate and attempt the movement. Celebrate every attempt. Allow 8–10 minutes.",
+        tip: "Between 9 and 12 months, babies move from watching to doing. Celebrating the trying — not just the succeeding — builds a growth mindset from the very first year of life."
       },
       {
-        id: "n10",
+        id: "n10", icon: "⭐",
         song: "Twinkle, Twinkle, Little Star",
-        ageMin: 9, ageMax: 12,
-        mood: "fussy",
+        ageMin: 9, ageMax: 12, mood: "fussy",
         context: "😢 transition or overstimulated",
-        activity:
-          "Pick your baby up and move to a quieter space. Sing this slowly and predictably, using the exact same words and tune every time — no improvising. Tap a slow, steady beat on their back as you sing and breathe visibly and slowly yourself. Give this 5 minutes of uninterrupted, calm repetition.",
-        tip: "✨ A consistent, familiar song used as a transition cue becomes a powerful self-regulation anchor by 12 months. The predictability tells their nervous system: 'I know what comes next — I am safe.' You are building a lifelong tool for calm."
+        activity: "Pick your baby up and move to a quieter space. Sing this slowly and predictably, using the exact same words and tune every time — no improvising. Tap a slow, steady beat on their back as you sing and breathe visibly and slowly yourself. Give this 5 minutes of uninterrupted, calm repetition.",
+        tip: "A consistent, familiar song used as a transition cue becomes a powerful self-regulation anchor by 12 months. The predictability tells their nervous system: 'I know what comes next — I am safe.'"
       }
     ];
 
     /* ----------------------------------------------------------
        STATE
     ---------------------------------------------------------- */
-    let selectedMood = null; // 'calm' | 'playful' | 'fussy'
-    let selectedAge  = 0;
+    let selectedMood    = null;
+    let selectedAge     = 0;
+    let lastMatchPool   = [];   // remembers last pool for "try another"
 
     /* ----------------------------------------------------------
        DOM REFS
     ---------------------------------------------------------- */
     const ageSlider      = document.getElementById('ageSlider');
     const ageDisplay     = document.getElementById('ageDisplay');
-    const ageUnit        = document.getElementById('ageUnit');
+    const ageLabel       = document.getElementById('ageLabel');
+    const milestoneDots  = document.getElementById('milestoneDots');
     const moodButtons    = document.querySelectorAll('.mood-btn');
     const getActivityBtn = document.getElementById('getActivityBtn');
+    const tryAnotherBtn  = document.getElementById('tryAnotherBtn');
     const resultCard     = document.getElementById('resultCard');
-    const resultTag      = document.getElementById('resultTag');
-    const resultSong     = document.getElementById('resultSong');
-    const resultContext  = document.getElementById('resultContext');
-    const resultActivity = document.getElementById('resultActivity');
-    const resultTip      = document.getElementById('resultTip');
 
     /* ----------------------------------------------------------
-       AGE DESCRIPTIONS — warm, developmental language
+       AGE DESCRIPTIONS
     ---------------------------------------------------------- */
     const ageDescriptions = {
       0:  "newborn magic ✨",
@@ -971,37 +1276,51 @@
     };
 
     /* ----------------------------------------------------------
-       SLIDER: update display + CSS fill gradient
+       BUILD MILESTONE DOTS
+    ---------------------------------------------------------- */
+    [0,2,4,6,8,10,12].forEach(m => {
+      const dot = document.createElement('div');
+      dot.className = 'milestone-dot' + (m === 0 ? ' active' : '');
+      dot.dataset.month = m;
+      dot.innerHTML = `<span></span><span>${m}</span>`;
+      dot.addEventListener('click', () => {
+        ageSlider.value = m;
+        updateSlider(m);
+      });
+      milestoneDots.appendChild(dot);
+    });
+
+    /* ----------------------------------------------------------
+       UPDATE SLIDER
     ---------------------------------------------------------- */
     function updateSlider(val) {
       selectedAge = parseInt(val, 10);
       ageDisplay.textContent = selectedAge;
-      ageUnit.textContent    = ageDescriptions[selectedAge] || `${selectedAge} months`;
-
-      // Update ARIA
+      ageLabel.textContent   = ageDescriptions[selectedAge] || `${selectedAge} months`;
       ageSlider.setAttribute('aria-valuenow', selectedAge);
-
-      // Update slider fill percentage via CSS variable
-      const pct = (selectedAge / 12) * 100;
-      ageSlider.style.setProperty('--slider-pct', `${pct}%`);
-
+      // CSS fill
+      ageSlider.style.setProperty('--fill', `${(selectedAge / 12) * 100}%`);
+      // Update milestone dots
+      document.querySelectorAll('.milestone-dot').forEach(d => {
+        d.classList.toggle('active', parseInt(d.dataset.month) === selectedAge ||
+          (selectedAge > parseInt(d.dataset.month) && parseInt(d.dataset.month) ===
+            Math.max(...[0,2,4,6,8,10,12].filter(x => x <= selectedAge))));
+      });
       checkReady();
     }
 
-    ageSlider.addEventListener('input', (e) => updateSlider(e.target.value));
-    updateSlider(0); // initialise
+    ageSlider.addEventListener('input', e => updateSlider(e.target.value));
+    updateSlider(0);
 
     /* ----------------------------------------------------------
        MOOD BUTTONS
     ---------------------------------------------------------- */
     moodButtons.forEach(btn => {
       btn.addEventListener('click', () => {
-        // Deselect all
         moodButtons.forEach(b => {
           b.classList.remove('selected');
           b.setAttribute('aria-pressed', 'false');
         });
-        // Select clicked
         btn.classList.add('selected');
         btn.setAttribute('aria-pressed', 'true');
         selectedMood = btn.dataset.mood;
@@ -1010,64 +1329,67 @@
     });
 
     /* ----------------------------------------------------------
-       ENABLE BUTTON when both inputs are set
+       ENABLE BUTTON
     ---------------------------------------------------------- */
     function checkReady() {
-      const ready = selectedMood !== null;
-      getActivityBtn.disabled = !ready;
+      getActivityBtn.disabled = selectedMood === null;
     }
 
     /* ----------------------------------------------------------
-       GET ACTIVITY — filter and pick a random match
+       GET ACTIVITY
     ---------------------------------------------------------- */
-    getActivityBtn.addEventListener('click', () => {
-      // Filter activities matching age + mood
-      const matches = activities.filter(a =>
+    function pickActivity() {
+      let pool = activities.filter(a =>
         a.mood === selectedMood &&
         selectedAge >= a.ageMin &&
         selectedAge <= a.ageMax
       );
+      if (!pool.length) pool = activities.filter(a => a.mood === selectedMood);
+      lastMatchPool = pool;
+      return pool[Math.floor(Math.random() * pool.length)];
+    }
 
-      if (matches.length === 0) {
-        // Fallback: just match mood regardless of age
-        const fallback = activities.filter(a => a.mood === selectedMood);
-        showActivity(fallback[Math.floor(Math.random() * fallback.length)]);
-        return;
-      }
+    getActivityBtn.addEventListener('click', () => {
+      showActivity(pickActivity());
+    });
 
-      // Pick randomly from matches
-      const pick = matches[Math.floor(Math.random() * matches.length)];
-      showActivity(pick);
+    /* Try another — excludes last shown if pool > 1 */
+    let lastShownId = null;
+    tryAnotherBtn.addEventListener('click', () => {
+      let pool = lastMatchPool.length > 1
+        ? lastMatchPool.filter(a => a.id !== lastShownId)
+        : lastMatchPool;
+      showActivity(pool[Math.floor(Math.random() * pool.length)]);
     });
 
     /* ----------------------------------------------------------
-       SHOW ACTIVITY — populate result card
+       SHOW ACTIVITY
     ---------------------------------------------------------- */
-    function showActivity(activity) {
-      // Set mood class for colour
-      resultCard.className = `result-card visible ${activity.mood}`;
+    function showActivity(a) {
+      lastShownId = a.id;
 
-      // Populate tag (mood label)
+      // Mood class on result card
+      resultCard.className = `result-card visible ${a.mood}`;
+
+      // Mood tag labels
       const moodLabels = {
         calm:    "🌙 calm moment",
         playful: "☀️ playful time",
         fussy:   "💛 gentle support"
       };
-      resultTag.textContent   = moodLabels[activity.mood] || activity.mood;
 
-      // Song title
-      resultSong.textContent  = `🎵 ${activity.song}`;
+      document.getElementById('resultIcon').textContent     = a.icon;
+      document.getElementById('resultTag').textContent      = moodLabels[a.mood];
+      document.getElementById('resultSong').textContent     = a.song;
+      document.getElementById('resultContext').textContent  = a.context;
+      document.getElementById('resultActivity').textContent = a.activity;
+      document.getElementById('resultTip').textContent      = a.tip;
 
-      // Context badge
-      resultContext.textContent = activity.context;
+      // Re-trigger animation
+      resultCard.style.animation = 'none';
+      resultCard.offsetHeight; // reflow
+      resultCard.style.animation = '';
 
-      // Activity description
-      resultActivity.textContent = activity.activity;
-
-      // Tip
-      resultTip.innerHTML = `<strong>For you, grown-up →</strong> ${activity.tip}`;
-
-      // Scroll result into view smoothly
       resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
   </script>
