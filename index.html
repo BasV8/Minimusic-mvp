@@ -870,6 +870,228 @@
       .app-title { font-size: 2rem; }
       .age-big   { font-size: 3.2rem; }
     }
+
+    /* ============================================================
+       LIBRARY SCREEN — "What are we doing?"
+       ============================================================ */
+
+    /* Link on home screen to open library */
+    .library-link-wrap {
+      text-align: center;
+      margin: 0 0 1.2rem;
+      position: relative; z-index: 1;
+    }
+    .btn-library-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.6rem 1.3rem;
+      background: var(--mint-wash);
+      border: 1.5px solid var(--mint-deep);
+      border-radius: var(--r-pill);
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--mint-deep);
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 3px 0 var(--mint), var(--shadow-xs);
+      transition: all 0.18s ease;
+    }
+    .btn-library-link:hover {
+      background: var(--mint);
+      color: var(--ink);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 0 var(--mint-deep), var(--shadow-sm);
+    }
+
+    /* Library screen header */
+    .library-header {
+      padding-top: 1.4rem;
+      margin-bottom: 0.4rem;
+    }
+    .library-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.3rem;
+    }
+    .library-title {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.1;
+    }
+    .library-subtitle {
+      font-size: 0.88rem;
+      color: var(--ink-mid);
+      font-weight: 500;
+      margin-bottom: 1.4rem;
+    }
+
+    /* Context icon grid */
+    .context-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.8rem;
+      margin-bottom: 1.4rem;
+    }
+    .context-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.2rem 0;
+      transition: transform 0.18s ease;
+    }
+    .context-btn:hover { transform: translateY(-3px); }
+    .context-btn.selected .context-bubble {
+      box-shadow: 0 0 0 3px var(--ink-mid);
+    }
+    .context-bubble {
+      width: 62px; height: 62px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: box-shadow 0.18s ease, transform 0.18s ease;
+    }
+    .context-bubble svg { width: 28px; height: 28px; }
+    .context-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--ink-mid);
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    /* Bubble colours — one per context */
+    .bubble--naptime   { background: #fef7d0; }
+    .bubble--dance     { background: #dff1f8; }
+    .bubble--carride   { background: #dff1f8; }
+    .bubble--waiting   { background: #fef7d0; }
+    .bubble--bonding   { background: #ede8f8; }
+    .bubble--playtime  { background: #fef7d0; }
+    .bubble--outdoors  { background: #ddf3e9; }
+    .bubble--bathtime  { background: #dff1f8; }
+
+    /* Library activity cards */
+    .library-section-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 1.2rem 0 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .library-card {
+      background: var(--white-warm);
+      border-radius: var(--r-lg);
+      padding: 1rem 1.1rem;
+      margin-bottom: 0.7rem;
+      box-shadow: var(--shadow-xs);
+      outline: 1px solid rgba(61,47,40,0.07);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      border: 1.5px solid transparent;
+    }
+    .library-card:hover {
+      box-shadow: var(--shadow-sm);
+      transform: translateY(-1px);
+      border-color: var(--parchment-dark);
+    }
+    .library-card-icon {
+      width: 44px; height: 44px;
+      border-radius: var(--r-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      background: var(--parchment);
+    }
+    .library-card-body { flex: 1; }
+    .library-card-song {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 0.2rem;
+    }
+    .library-card-meta {
+      font-size: 0.75rem;
+      color: var(--ink-soft);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .library-card-tag {
+      display: inline-block;
+      padding: 0.1rem 0.5rem;
+      border-radius: var(--r-pill);
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .tag--calm    { background: var(--sky-wash);    color: var(--sky-deep); }
+    .tag--playful { background: var(--yellow-wash); color: #8a6e10; }
+    .tag--fussy   { background: var(--coral-wash);  color: var(--coral-deep); }
+
+    .library-card-arrow {
+      color: var(--ink-faint);
+      align-self: center;
+      flex-shrink: 0;
+      transition: transform 0.18s, color 0.18s;
+    }
+    .library-card:hover .library-card-arrow {
+      transform: translateX(3px);
+      color: var(--ink-mid);
+    }
+
+    /* Empty state when no context selected */
+    .library-empty {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      color: var(--ink-soft);
+    }
+    .library-empty-icon { font-size: 2.5rem; margin-bottom: 0.6rem; }
+    .library-empty-text {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    .library-tagline {
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+      font-weight: 500;
+      text-align: center;
+      padding: 1rem 0 0.5rem;
+      font-style: italic;
+    }
+
+    /* Screen 3 uses same slide system — starts right */
+    .screen--library {
+      transform: translateX(100%);
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+      top: 0; left: 0; right: 0;
+    }
+    .screen--library.slide-in {
+      transform: translateX(0);
+      opacity: 1;
+      pointer-events: auto;
+      position: relative;
+    }
   </style>
 </head>
 <body>
@@ -1073,6 +1295,19 @@
       Find our moment →
     </button>
 
+    <!-- LIBRARY LINK -->
+    <div class="library-link-wrap fade-in">
+      <button class="btn-library-link" id="openLibraryBtn" type="button">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <rect x="1" y="2" width="6" height="6" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <rect x="9" y="2" width="6" height="6" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <rect x="1" y="10" width="6" height="6" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <rect x="9" y="10" width="6" height="6" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+        What are we doing? →
+      </button>
+    </div>
+
   </div><!-- /screen--home -->
 
   <!-- SCREEN 2: RESULT -->
@@ -1157,6 +1392,152 @@
 
   </div><!-- /screen--result -->
 
+
+  <!-- SCREEN 3: SONG & ACTIVITY LIBRARY -->
+  <div class="screen screen--library" id="screenLibrary">
+
+    <div class="library-header">
+      <div class="library-header-row">
+        <button class="btn-back" id="backFromLibraryBtn" type="button">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M10 3 L5 8 L10 13" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back
+        </button>
+        <span class="result-screen-title">Song Library 🎵</span>
+      </div>
+      <h2 class="library-title">What are we doing?</h2>
+      <p class="library-subtitle">Pick a moment and we'll show you the perfect songs.</p>
+    </div>
+
+    <!-- CONTEXT ICON GRID -->
+    <div class="context-grid" id="contextGrid">
+
+      <!-- Naptime -->
+      <button class="context-btn" data-context="naptime" type="button">
+        <div class="context-bubble bubble--naptime">
+          <svg viewBox="0 0 28 28" fill="none">
+            <path d="M18 5 Q8 8 8 14 Q8 20 14 22 Q7 20 6 14 Q5 8 13 4z"
+                  fill="none" stroke="#9b8478" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="20" cy="8" r="1.2" fill="#f9dc6e"/>
+            <circle cx="22" cy="12" r="0.8" fill="#f9dc6e" opacity="0.7"/>
+          </svg>
+        </div>
+        <span class="context-label">Naptime</span>
+      </button>
+
+      <!-- Dance -->
+      <button class="context-btn" data-context="dance" type="button">
+        <div class="context-bubble bubble--dance">
+          <svg viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="6" r="2.5" fill="none" stroke="#9b8478" stroke-width="1.8"/>
+            <path d="M14 8.5 L12 16 L10 22" stroke="#9b8478" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M14 8.5 L16 16 L18 22" stroke="#9b8478" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M12 13 L9 11" stroke="#9b8478" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M16 13 L19 11" stroke="#9b8478" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="context-label">Dance</span>
+      </button>
+
+      <!-- Car Ride -->
+      <button class="context-btn" data-context="carride" type="button">
+        <div class="context-bubble bubble--carride">
+          <svg viewBox="0 0 28 28" fill="none">
+            <rect x="4" y="12" width="20" height="9" rx="3" fill="none" stroke="#9b8478" stroke-width="1.8"/>
+            <path d="M7 12 L9 7 L19 7 L21 12" stroke="#9b8478" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="9" cy="21" r="2.5" fill="none" stroke="#9b8478" stroke-width="1.8"/>
+            <circle cx="19" cy="21" r="2.5" fill="none" stroke="#9b8478" stroke-width="1.8"/>
+            <rect x="10" y="8.5" width="8" height="4" rx="1" fill="none" stroke="#9b8478" stroke-width="1.3"/>
+          </svg>
+        </div>
+        <span class="context-label">Car Ride</span>
+      </button>
+
+      <!-- Waiting -->
+      <button class="context-btn" data-context="waiting" type="button">
+        <div class="context-bubble bubble--waiting">
+          <svg viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="14" r="9" fill="none" stroke="#9b8478" stroke-width="1.8"/>
+            <path d="M14 8 L14 14 L18 17" stroke="#9b8478" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="context-label">Waiting</span>
+      </button>
+
+      <!-- Bonding -->
+      <button class="context-btn" data-context="bonding" type="button">
+        <div class="context-bubble bubble--bonding">
+          <svg viewBox="0 0 28 28" fill="none">
+            <path d="M14 22 C4 16 2 8 6 5 Q9 2 12 5 Q13 6.5 14 8 Q15 6.5 16 5 Q19 2 22 5 C26 8 24 16 14 22z"
+                  fill="none" stroke="#9b8478" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="context-label">Bonding</span>
+      </button>
+
+      <!-- Playtime -->
+      <button class="context-btn" data-context="playtime" type="button">
+        <div class="context-bubble bubble--playtime">
+          <svg viewBox="0 0 28 28" fill="none">
+            <rect x="4" y="4" width="8" height="8" rx="2" fill="none" stroke="#9b8478" stroke-width="1.8"/>
+            <rect x="16" y="4" width="8" height="8" rx="2" fill="none" stroke="#9b8478" stroke-width="1.8"/>
+            <rect x="4" y="16" width="8" height="8" rx="2" fill="none" stroke="#9b8478" stroke-width="1.8"/>
+            <rect x="16" y="16" width="8" height="8" rx="2" fill="none" stroke="#9b8478" stroke-width="1.8"/>
+          </svg>
+        </div>
+        <span class="context-label">Playtime</span>
+      </button>
+
+      <!-- Outdoors -->
+      <button class="context-btn" data-context="outdoors" type="button">
+        <div class="context-bubble bubble--outdoors">
+          <svg viewBox="0 0 28 28" fill="none">
+            <path d="M14 4 L14 6" stroke="#9b8478" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M8 8 L9.5 9.5" stroke="#9b8478" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M4 14 L6 14" stroke="#9b8478" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="14" cy="14" r="5" fill="none" stroke="#9b8478" stroke-width="1.8"/>
+            <path d="M7 22 Q10 17 14 17 Q18 17 21 22" fill="none" stroke="#9b8478" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M20 8 L18.5 9.5" stroke="#9b8478" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M22 14 L24 14" stroke="#9b8478" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="context-label">Outdoors</span>
+      </button>
+
+      <!-- Bathtime -->
+      <button class="context-btn" data-context="bathtime" type="button">
+        <div class="context-bubble bubble--bathtime">
+          <svg viewBox="0 0 28 28" fill="none">
+            <path d="M5 15 L23 15" stroke="#9b8478" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M5 15 Q5 22 14 22 Q23 22 23 15" fill="none" stroke="#9b8478" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M9 15 L9 10 Q9 7 12 7 L12 9" stroke="#9b8478" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 6 Q14 4 16 6" stroke="#9b8478" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="context-label">Bathtime</span>
+      </button>
+
+    </div><!-- /context-grid -->
+
+    <!-- ACTIVITY LIST — populated by JS -->
+    <div id="libraryList">
+      <div class="library-empty">
+        <div class="library-empty-icon">🎵</div>
+        <div class="library-empty-text">Pick a moment above to see songs</div>
+      </div>
+    </div>
+
+    <p class="library-tagline">Every moment of music is a gift. No wrong choices here. 💛</p>
+
+    <!-- FOOTER -->
+    <footer class="app-footer">
+      Made with 💛 for humans both big and small · grounded in science.
+    </footer>
+
+  </div><!-- /screen--library -->
+
   </div><!-- /app-shell -->
 
   <!-- ============================================================
@@ -1171,7 +1552,7 @@
 
       /* ===================== CALM / SLEEPY ===================== */
       {
-        id: "c1", icon: "⭐",
+        id: "c1", contexts: ["naptime", "bonding"], icon: "⭐",
         song: "Twinkle, Twinkle, Little Star",
         ageMin: 0, ageMax: 3, mood: "calm",
         context: "🌙 settling or bedtime",
@@ -1179,7 +1560,7 @@
         tip: "You don't need a perfect singing voice. Your voice is the most magical sound in the world to them right now."
       },
       {
-        id: "c2", icon: "🌙",
+        id: "c2", contexts: ["naptime", "bonding"], icon: "🌙",
         song: "Rock-a-bye Baby",
         ageMin: 0, ageMax: 5, mood: "calm",
         context: "🌙 naptime or wind-down",
@@ -1187,7 +1568,7 @@
         tip: "Slow rhythm signals safety to a newborn nervous system. There's no rush — stay here as long as you both need."
       },
       {
-        id: "c3", icon: "🌿",
+        id: "c3", contexts: ["bonding", "waiting"], icon: "🌿",
         song: "Hush, Little Baby",
         ageMin: 3, ageMax: 7, mood: "calm",
         context: "🌿 quiet moment or feed",
@@ -1195,7 +1576,7 @@
         tip: "Touch and voice together build your baby's sense of security and body awareness at the same time."
       },
       {
-        id: "c4", icon: "☀️",
+        id: "c4", contexts: ["bonding", "playtime"], icon: "☀️",
         song: "You Are My Sunshine",
         ageMin: 4, ageMax: 12, mood: "calm",
         context: "🌤 morning or feed time",
@@ -1203,7 +1584,7 @@
         tip: "These pauses are the first conversations. Wait, watch, and wonder together."
       },
       {
-        id: "c5", icon: "🌟",
+        id: "c5", contexts: ["naptime", "bonding"], icon: "🌟",
         song: "Golden Slumbers",
         ageMin: 6, ageMax: 12, mood: "calm",
         context: "🌙 evening or sleep time",
@@ -1213,7 +1594,7 @@
 
       /* ==================== PLAYFUL / ALERT ==================== */
       {
-        id: "p1", icon: "👏",
+        id: "p1", contexts: ["playtime", "dance"], icon: "👏",
         song: "If You're Happy and You Know It",
         ageMin: 5, ageMax: 8, mood: "playful",
         context: "☀️ playtime or after a nap",
@@ -1221,7 +1602,7 @@
         tip: "Repetition is how babies learn to predict and then delight in 'knowing what's coming'. You're building their brain architecture right now."
       },
       {
-        id: "p2", icon: "🚌",
+        id: "p2", contexts: ["carride", "playtime", "dance"], icon: "🚌",
         song: "The Wheels on the Bus",
         ageMin: 4, ageMax: 12, mood: "playful",
         context: "🚌 any alert moment",
@@ -1229,7 +1610,7 @@
         tip: "Big, predictable gestures help babies begin to connect actions with words. Silly is science here."
       },
       {
-        id: "p3", icon: "🤸",
+        id: "p3", contexts: ["playtime"], icon: "🤸",
         song: "Head, Shoulders, Knees and Toes",
         ageMin: 6, ageMax: 12, mood: "playful",
         context: "☀️ mat time or morning",
@@ -1237,7 +1618,7 @@
         tip: "Body awareness is a foundation of emotional regulation. Songs like this do more than entertain."
       },
       {
-        id: "p4", icon: "🎂",
+        id: "p4", contexts: ["playtime", "waiting"], icon: "🎂",
         song: "Pat-a-Cake",
         ageMin: 3, ageMax: 9, mood: "playful",
         context: "🎂 anytime — especially after feeds",
@@ -1245,7 +1626,7 @@
         tip: "Hearing their own name sung teaches babies that they are known and valued. This is identity-building in miniature."
       },
       {
-        id: "p5", icon: "🚣",
+        id: "p5", contexts: ["bathtime", "playtime"], icon: "🚣",
         song: "Row, Row, Row Your Boat",
         ageMin: 2, ageMax: 8, mood: "playful",
         context: "🛁 bathtime or after a nap",
@@ -1253,7 +1634,7 @@
         tip: "Vestibular movement (rocking and swaying) is essential for balance development and nervous system regulation."
       },
       {
-        id: "b1", icon: "🛁",
+        id: "b1", contexts: ["bathtime"], icon: "🛁",
         song: "Rubber Duckie",
         ageMin: 3, ageMax: 12, mood: "playful",
         context: "🛁 bathtime",
@@ -1263,7 +1644,7 @@
 
       /* ==================== FUSSY / UNSETTLED ================== */
       {
-        id: "f1", icon: "🤗",
+        id: "f1", contexts: ["bonding", "waiting"], icon: "🤗",
         song: "Hush Now, Quiet Now",
         ageMin: 0, ageMax: 4, mood: "fussy",
         context: "😢 any unsettled moment",
@@ -1271,7 +1652,7 @@
         tip: "You are enough. Being held by someone who loves them is the oldest, most effective comfort in the world."
       },
       {
-        id: "f2", icon: "🌈",
+        id: "f2", contexts: ["carride", "bonding"], icon: "🌈",
         song: "Somewhere Over the Rainbow",
         ageMin: 0, ageMax: 6, mood: "fussy",
         context: "😢 overtired or overstimulated",
@@ -1279,7 +1660,7 @@
         tip: "When babies are overwhelmed, reducing stimulation and keeping your own breath slow sends a calming signal through your body into theirs."
       },
       {
-        id: "f3", icon: "🌙",
+        id: "f3", contexts: ["naptime", "bonding"], icon: "🌙",
         song: "Brahms' Lullaby",
         ageMin: 0, ageMax: 5, mood: "fussy",
         context: "😢 evening or settling",
@@ -1287,7 +1668,7 @@
         tip: "Co-regulation is not 'spoiling' — it's how babies learn to self-regulate later. You are their external nervous system right now."
       },
       {
-        id: "f4", icon: "💛",
+        id: "f4", contexts: ["bonding"], icon: "💛",
         song: "The More We Get Together",
         ageMin: 5, ageMax: 12, mood: "fussy",
         context: "😢 needing connection",
@@ -1295,7 +1676,7 @@
         tip: "At 20–30cm distance, newborns can focus perfectly on your face. This is the original connection technology."
       },
       {
-        id: "f5", icon: "🌊",
+        id: "f5", contexts: ["bonding", "carride"], icon: "🌊",
         song: "Swing Low, Sweet Chariot",
         ageMin: 3, ageMax: 12, mood: "fussy",
         context: "😢 in arms, any time",
@@ -1305,7 +1686,7 @@
 
       /* ==================== NEW — 0 to 3 months ================ */
       {
-        id: "n1", icon: "🫶",
+        id: "n1", contexts: ["bonding", "naptime"], icon: "🫶",
         song: "Skinnamarink",
         ageMin: 0, ageMax: 3, mood: "calm",
         context: "🌿 skin-to-skin or feed time",
@@ -1313,7 +1694,7 @@
         tip: "Skin-to-skin contact in the first months regulates your baby's temperature, heart rate, and cortisol levels — and your oxytocin too. You are literally their medicine right now."
       },
       {
-        id: "n2", icon: "🌙",
+        id: "n2", contexts: ["naptime", "bonding"], icon: "🌙",
         song: "Sleep, Baby, Sleep",
         ageMin: 0, ageMax: 3, mood: "fussy",
         context: "😢 overstimulated or overtired",
@@ -1321,7 +1702,7 @@
         tip: "A monotone, repetitive voice is more settling than an expressive one for very young babies — it mimics the muffled, rhythmic sounds of the womb they still remember."
       },
       {
-        id: "n3", icon: "🐑",
+        id: "n3", contexts: ["playtime", "bonding"], icon: "🐑",
         song: "Mary Had a Little Lamb",
         ageMin: 0, ageMax: 3, mood: "playful",
         context: "☀️ alert window after a feed",
@@ -1331,7 +1712,7 @@
 
       /* ==================== NEW — 3 to 6 months ================ */
       {
-        id: "n4", icon: "🕷️",
+        id: "n4", contexts: ["playtime", "outdoors"], icon: "🕷️",
         song: "Itsy Bitsy Spider",
         ageMin: 3, ageMax: 6, mood: "playful",
         context: "☀️ tummy time or mat play",
@@ -1339,7 +1720,7 @@
         tip: "Tummy time builds the neck, shoulder, and core strength needed for sitting and crawling. Your moving hands and face are the kindest way to make it feel like play, not work."
       },
       {
-        id: "n5", icon: "🐄",
+        id: "n5", contexts: ["playtime", "carride"], icon: "🐄",
         song: "Old MacDonald Had a Farm",
         ageMin: 3, ageMax: 6, mood: "playful",
         context: "☀️ playtime or after a nap",
@@ -1347,7 +1728,7 @@
         tip: "Between 3 and 6 months, babies are actively mapping the sounds of their language environment. Varied, expressive vocalisations — even animal ones — are building the auditory foundation for speech."
       },
       {
-        id: "n6", icon: "🤝",
+        id: "n6", contexts: ["bonding"], icon: "🤝",
         song: "You've Got a Friend in Me",
         ageMin: 3, ageMax: 6, mood: "calm",
         context: "🌤 quiet connection time",
@@ -1357,7 +1738,7 @@
 
       /* ==================== NEW — 6 to 9 months ================ */
       {
-        id: "n7", icon: "🐻",
+        id: "n7", contexts: ["playtime"], icon: "🐻",
         song: "The Bear Went Over the Mountain",
         ageMin: 6, ageMax: 9, mood: "playful",
         context: "☀️ sitting practice or floor play",
@@ -1365,7 +1746,7 @@
         tip: "Reaching across the body's midline connects the left and right brain hemispheres — a critical milestone that lays groundwork for reading and writing later."
       },
       {
-        id: "n8", icon: "🐷",
+        id: "n8", contexts: ["bathtime", "bonding"], icon: "🐷",
         song: "This Little Piggy",
         ageMin: 6, ageMax: 9, mood: "calm",
         context: "🌿 after a bath or nappy change",
@@ -1375,7 +1756,7 @@
 
       /* ==================== NEW — 9 to 12 months =============== */
       {
-        id: "n9", icon: "🌟",
+        id: "n9", contexts: ["playtime", "dance"], icon: "🌟",
         song: "If You're Happy and You Know It",
         ageMin: 9, ageMax: 12, mood: "playful",
         context: "☀️ morning or active play",
@@ -1383,7 +1764,7 @@
         tip: "Between 9 and 12 months, babies move from watching to doing. Celebrating the trying — not just the succeeding — builds a growth mindset from the very first year of life."
       },
       {
-        id: "n10", icon: "⭐",
+        id: "n10", contexts: ["bonding", "waiting"], icon: "⭐",
         song: "Twinkle, Twinkle, Little Star",
         ageMin: 9, ageMax: 12, mood: "fussy",
         context: "😢 transition or overstimulated",
@@ -1520,24 +1901,159 @@
     /* ----------------------------------------------------------
        SCREEN NAVIGATION
     ---------------------------------------------------------- */
-    const screenHome   = document.getElementById('screenHome');
-    const screenResult = document.getElementById('screenResult');
-    const backBtn      = document.getElementById('backBtn');
+    const screenHome    = document.getElementById('screenHome');
+    const screenResult  = document.getElementById('screenResult');
+    const screenLibrary = document.getElementById('screenLibrary');
+    const backBtn       = document.getElementById('backBtn');
+    const backFromLibraryBtn = document.getElementById('backFromLibraryBtn');
+    const openLibraryBtn     = document.getElementById('openLibraryBtn');
+
+    function hideAll() {
+      screenHome.classList.remove('slide-out');
+      screenResult.classList.remove('slide-in');
+      screenLibrary.classList.remove('slide-in');
+    }
 
     function goToResult() {
       screenHome.classList.add('slide-out');
       screenResult.classList.add('slide-in');
-      // Scroll shell to top
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function goToHome() {
-      screenHome.classList.remove('slide-out');
-      screenResult.classList.remove('slide-in');
+      hideAll();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function goToLibrary() {
+      screenHome.classList.add('slide-out');
+      screenLibrary.classList.add('slide-in');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     backBtn.addEventListener('click', goToHome);
+    backFromLibraryBtn.addEventListener('click', goToHome);
+    openLibraryBtn.addEventListener('click', goToLibrary);
+
+    /* ----------------------------------------------------------
+       LIBRARY — context filtering
+    ---------------------------------------------------------- */
+    let selectedContext = null;
+
+    const contextBtns = document.querySelectorAll('.context-btn');
+    const libraryList = document.getElementById('libraryList');
+
+    const contextLabels = {
+      naptime:  { label: 'Naptime',   emoji: '🌙' },
+      dance:    { label: 'Dance',     emoji: '💃' },
+      carride:  { label: 'Car Ride',  emoji: '🚗' },
+      waiting:  { label: 'Waiting',   emoji: '⏳' },
+      bonding:  { label: 'Bonding',   emoji: '💛' },
+      playtime: { label: 'Playtime',  emoji: '☀️' },
+      outdoors: { label: 'Outdoors',  emoji: '🌿' },
+      bathtime: { label: 'Bathtime',  emoji: '🛁' },
+    };
+
+    const moodTagClass = { calm: 'tag--calm', playful: 'tag--playful', fussy: 'tag--fussy' };
+    const moodLabel    = { calm: 'Calm', playful: 'Playful', fussy: 'Soothing' };
+
+    contextBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Toggle
+        if (selectedContext === btn.dataset.context) {
+          selectedContext = null;
+          btn.classList.remove('selected');
+          renderLibrary(null);
+          return;
+        }
+        contextBtns.forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        selectedContext = btn.dataset.context;
+        renderLibrary(selectedContext);
+      });
+    });
+
+    function renderLibrary(ctx) {
+      if (!ctx) {
+        libraryList.innerHTML = `
+          <div class="library-empty">
+            <div class="library-empty-icon">🎵</div>
+            <div class="library-empty-text">Pick a moment above to see songs</div>
+          </div>`;
+        return;
+      }
+
+      const matched = activities.filter(a => a.contexts && a.contexts.includes(ctx));
+
+      if (!matched.length) {
+        libraryList.innerHTML = `
+          <div class="library-empty">
+            <div class="library-empty-icon">🎶</div>
+            <div class="library-empty-text">No songs yet for this moment</div>
+          </div>`;
+        return;
+      }
+
+      const info = contextLabels[ctx];
+      let html = `<div class="library-section-title">${info.emoji} ${info.label} songs</div>`;
+
+      matched.forEach(a => {
+        const ages = a.ageMin === a.ageMax
+          ? `${a.ageMin}m`
+          : `${a.ageMin}–${a.ageMax}m`;
+        html += `
+          <div class="library-card" data-id="${a.id}" role="button" tabindex="0"
+               aria-label="Play ${a.song}">
+            <div class="library-card-icon">${a.icon}</div>
+            <div class="library-card-body">
+              <div class="library-card-song">${a.song}</div>
+              <div class="library-card-meta">
+                <span class="library-card-tag ${moodTagClass[a.mood]}">${moodLabel[a.mood]}</span>
+                <span>Ages ${ages}</span>
+              </div>
+            </div>
+            <svg class="library-card-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M6 3 L11 8 L6 13" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>`;
+      });
+
+      libraryList.innerHTML = html;
+
+      // Wire up library cards — tap to open activity on result screen
+      libraryList.querySelectorAll('.library-card').forEach(card => {
+        const handler = () => {
+          const a = activities.find(x => x.id === card.dataset.id);
+          if (a) {
+            // Deselect library context so back returns cleanly
+            showActivityFromLibrary(a);
+          }
+        };
+        card.addEventListener('click', handler);
+        card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') handler(); });
+      });
+    }
+
+    function showActivityFromLibrary(a) {
+      lastShownId = a.id;
+      resultCard.className = `result-card visible ${a.mood}`;
+      const moodLabels = {
+        calm:    "🌙 calm moment",
+        playful: "☀️ playful time",
+        fussy:   "💛 gentle support"
+      };
+      document.getElementById('resultIcon').textContent     = a.icon;
+      document.getElementById('resultTag').textContent      = moodLabels[a.mood];
+      document.getElementById('resultSong').textContent     = a.song;
+      document.getElementById('resultContext').textContent  = a.context;
+      document.getElementById('resultActivity').textContent = a.activity;
+      document.getElementById('resultTip').textContent      = a.tip;
+      // Slide from library to result
+      screenLibrary.classList.remove('slide-in');
+      screenResult.classList.add('slide-in');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
     /* ----------------------------------------------------------
        SHOW ACTIVITY
