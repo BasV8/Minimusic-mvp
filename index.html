@@ -1704,7 +1704,7 @@
       {
         id: "n3", contexts: ["playtime", "bonding"], icon: "🐑",
         song: "Mary Had a Little Lamb",
-        ageMin: 0, ageMax: 3, mood: "playful",
+        ageMin: 0, ageMax: 5, mood: "playful",
         context: "☀️ alert window after a feed",
         activity: "Hold your baby at arm's length, face-to-face, and sing while gently bobbing them in time with the beat. Pause after each verse and wait — watch their eyes widen and their mouth move as they 'talk back' with tiny sounds and expressions. About 5 minutes, best in a bright, calm space.",
         tip: "Newborns have alert windows of only 45–60 minutes between sleeps. This face-to-face exchange activates the social brain and is the earliest form of conversation your baby will ever have."
@@ -1770,6 +1770,728 @@
         context: "😢 transition or overstimulated",
         activity: "Pick your baby up and move to a quieter space. Sing this slowly and predictably, using the exact same words and tune every time — no improvising. Tap a slow, steady beat on their back as you sing and breathe visibly and slowly yourself. Give this 5 minutes of uninterrupted, calm repetition.",
         tip: "A consistent, familiar song used as a transition cue becomes a powerful self-regulation anchor by 12 months. The predictability tells their nervous system: 'I know what comes next — I am safe.'"
+      },
+
+      /* ==================== NEW EXPANDED ACTIVITIES ==================== */
+
+      /* ── TWINKLE TWINKLE ── */
+      {
+        id: "x_tw_03c", contexts: ["bonding","naptime"], icon: "⭐",
+        song: "Twinkle, Twinkle, Little Star",
+        ageMin: 0, ageMax: 5, mood: "calm",
+        context: "🌿 skin-to-skin",
+        activity: "Undress your baby to their nappy and lay them on your bare chest. Sing with your eyes closed and breathe slowly. If your baby startles with light touch, rest a warm hand gently but confidently over their back.",
+        tip: "You don't need a perfect singing voice. They're not reviewing your performance — they're just glad you're here."
+      },
+      {
+        id: "x_tw_36p", contexts: ["playtime","bonding"], icon: "⭐",
+        song: "Twinkle, Twinkle, Little Star",
+        ageMin: 2, ageMax: 7, mood: "playful",
+        context: "☀️ star toy tracking",
+        activity: "Hold a small soft star above your baby during tummy time. Move it slowly left and right. Pause when their eyes lock on, then wait for them to find it again.",
+        tip: "That moment when they go still and really focus? That's them concentrating — hard. Wait for them. They'll find it again."
+      },
+      {
+        id: "x_tw_69c", contexts: ["naptime","bonding"], icon: "⭐",
+        song: "Twinkle, Twinkle, Little Star",
+        ageMin: 5, ageMax: 10, mood: "calm",
+        context: "🌙 finger-tapping wind-down",
+        activity: "Dim the lights. Sit your baby facing a dark window. Tap each of their fingers in turn as you sing slowly. Repeat twice.",
+        tip: "One tap, one syllable, slow and steady. By the end they may be watching your hands with serious attention."
+      },
+      {
+        id: "x_tw_912p", contexts: ["playtime","bonding"], icon: "⭐",
+        song: "Twinkle, Twinkle, Little Star",
+        ageMin: 7, ageMax: 12, mood: "playful",
+        context: "☀️ call and response",
+        activity: "Sing the first line, then pause. Respond warmly to whatever your baby does as if it were the perfect answer.",
+        tip: "That pause belongs to them. Whatever they do in it — a sound, a look, a tiny movement — that is their half of the conversation."
+      },
+      /* ── ROCK-A-BYE BABY ── */
+      {
+        id: "x_rb_03f", contexts: ["bonding"], icon: "🌙",
+        song: "Rock-a-bye Baby",
+        ageMin: 0, ageMax: 4, mood: "fussy",
+        context: "😢 forearm hold",
+        activity: "Hold your baby tummy-down along your forearm, head near your elbow. Support their bottom and rock your whole arm gently while humming.",
+        tip: "Sometimes all they need is to feel held and moving at the same time. This carry gives them both."
+      },
+      {
+        id: "x_rb_36c", contexts: ["bonding","naptime"], icon: "🌙",
+        song: "Rock-a-bye Baby",
+        ageMin: 2, ageMax: 7, mood: "calm",
+        context: "🌿 leg massage",
+        activity: "Lay your baby on a warm towel. Use gentle, confident downward strokes on each leg, one per beat. Sing one verse per leg.",
+        tip: "Slow strokes, warm hands, a familiar song. Just be steady and present — that is the whole thing."
+      },
+      {
+        id: "x_rb_69p", contexts: ["playtime","bonding"], icon: "🌙",
+        song: "Rock-a-bye Baby",
+        ageMin: 5, ageMax: 10, mood: "playful",
+        context: "☀️ supported rock and tilt",
+        activity: "Sit your baby between your legs, facing outward. Hold their hands and rock forward and back. On \"down will come baby,\" tilt them back only a few degrees. Avoid this if your baby has reflux.",
+        tip: "That wide-eyed moment of 'oh!' is pure delight."
+      },
+      {
+        id: "x_rb_912c", contexts: ["naptime","bonding"], icon: "🌙",
+        song: "Rock-a-bye Baby",
+        ageMin: 8, ageMax: 12, mood: "calm",
+        context: "🌙 toy rocking ritual",
+        activity: "Give your baby their comfort toy. Help them rock it as you sing. Lower both toy and baby gently on \"down will come baby.\"",
+        tip: "Watch how seriously they take it. They already know this feeling — now they are passing it on."
+      },
+      /* ── HUSH, LITTLE BABY ── */
+      {
+        id: "x_hlb_03c", contexts: ["naptime","bonding"], icon: "🌿",
+        song: "Hush, Little Baby",
+        ageMin: 0, ageMax: 5, mood: "calm",
+        context: "🌿 whisper and stillness",
+        activity: "Swaddle your baby and hold them close. Whisper each verse with your lips near their ear. If your baby fusses, add gentle movement or a warm hand on their back.",
+        tip: "A whisper close to their ear carries something a full voice cannot — warmth without weight."
+      },
+      {
+        id: "x_hlb_36f", contexts: ["waiting","bonding"], icon: "🌿",
+        song: "Hush, Little Baby",
+        ageMin: 2, ageMax: 7, mood: "fussy",
+        context: "😢 room-change distraction",
+        activity: "Walk slowly through different rooms as you sing. Pause at something mildly interesting, such as a window or mirror.",
+        tip: "When staying still is not working, move — slowly, gently, with something new to look at each time."
+      },
+      {
+        id: "x_hlb_69p", contexts: ["playtime","bonding"], icon: "🌿",
+        song: "Hush, Little Baby",
+        ageMin: 5, ageMax: 10, mood: "playful",
+        context: "☀️ object naming song",
+        activity: "Improvise verses using safe-to-mouth objects your baby can hold. Name each object as you hand it to them.",
+        tip: "Watch their face when they realise the song is about them, right now, and the thing in their hands."
+      },
+      {
+        id: "x_hlb_912c", contexts: ["bonding","naptime"], icon: "🌿",
+        song: "Hush, Little Baby",
+        ageMin: 8, ageMax: 12, mood: "calm",
+        context: "🌙 family photo book",
+        activity: "Use a simple family photo book. Sing each verse about a person in the photos. Pause to let your baby point or look.",
+        tip: "They know that face. Watch them make the connection in real time."
+      },
+      /* ── YOU ARE MY SUNSHINE ── */
+      {
+        id: "x_yams_03c", contexts: ["bonding"], icon: "☀️",
+        song: "You Are My Sunshine",
+        ageMin: 0, ageMax: 5, mood: "calm",
+        context: "🌿 still-face pause",
+        activity: "Hold your baby at face distance. Sing one phrase, then pause softly for up to ten seconds. Resume singing if they show distress.",
+        tip: "That pause belongs to them. Whatever they do in it is their half of the conversation."
+      },
+      {
+        id: "x_yams_36p", contexts: ["playtime","bonding"], icon: "☀️",
+        song: "You Are My Sunshine",
+        ageMin: 3, ageMax: 8, mood: "playful",
+        context: "☀️ mirror play",
+        activity: "Sit in front of a mirror with your baby on your lap. Sing to their reflection and pair each line with gentle touch or gesture.",
+        tip: "Watch them watching themselves — there is a lot going on behind those eyes."
+      },
+      {
+        id: "x_yams_69p", contexts: ["playtime","bonding"], icon: "☀️",
+        song: "You Are My Sunshine",
+        ageMin: 5, ageMax: 10, mood: "playful",
+        context: "☀️ scarf peek-a-boo",
+        activity: "Drape a light muslin over your baby's head and find them on the lyric. Then drape it over your own face and let them pull it off.",
+        tip: "The moment they grab the cloth and reveal your face? That is them solving a problem on purpose."
+      },
+      {
+        id: "x_yams_912f", contexts: ["carride","waiting"], icon: "☀️",
+        song: "You Are My Sunshine",
+        ageMin: 8, ageMax: 12, mood: "fussy",
+        context: "😢 transition anchor",
+        activity: "Use this song only for one specific transition, such as the car seat or shoes on. Keep the tune, tempo and words the same every time.",
+        tip: "Same song, same moment, same words — every single time. Within a couple of weeks, watch what happens when they hear the first note."
+      },
+      /* ── GOLDEN SLUMBERS ── */
+      {
+        id: "x_gs_03f", contexts: ["naptime","bonding"], icon: "🌟",
+        song: "Golden Slumbers",
+        ageMin: 0, ageMax: 4, mood: "fussy",
+        context: "😢 night-waking hum",
+        activity: "Keep the room dark. Hold your baby against your chest and hum with your mouth closed until they soften.",
+        tip: "No lights, no movement — just your warmth and a low hum."
+      },
+      {
+        id: "x_gs_36c", contexts: ["naptime","bonding"], icon: "🌟",
+        song: "Golden Slumbers",
+        ageMin: 2, ageMax: 7, mood: "calm",
+        context: "🌙 waltz-hold sway",
+        activity: "Hold your baby in a waltz hold and sway in a slow three-count. Keep your steps small and grounded.",
+        tip: "Let them hold their own head up a little. They are working even while they are winding down."
+      },
+      {
+        id: "x_gs_69c", contexts: ["naptime","bonding"], icon: "🌟",
+        song: "Golden Slumbers",
+        ageMin: 5, ageMax: 10, mood: "calm",
+        context: "🌙 chest-to-chest on floor",
+        activity: "Lie on your back with your baby on your tummy. Sing softly to the ceiling. Let your breathing set the rhythm.",
+        tip: "Your breath is an invitation for theirs to follow."
+      },
+      {
+        id: "x_gs_912c", contexts: ["naptime","bonding"], icon: "🌟",
+        song: "Golden Slumbers",
+        ageMin: 8, ageMax: 12, mood: "calm",
+        context: "🌙 song and book alternation",
+        activity: "Alternate one page of a soft-coloured book with one verse of the song. Keep the room dim and your voice steady.",
+        tip: "Both of you get the familiar, over and over, in different forms."
+      },
+      /* ── IF YOU ARE HAPPY ── */
+      {
+        id: "x_ifyh_03p", contexts: ["playtime","dance"], icon: "👏",
+        song: "If You're Happy and You Know It",
+        ageMin: 0, ageMax: 4, mood: "playful",
+        context: "☀️ observe the actions",
+        activity: "Lay your baby down. Sing and do the actions above them with a wide, expressive face.",
+        tip: "They are watching everything. You will not see them copy it for months, but they are already taking notes."
+      },
+      {
+        id: "x_ifyh_36p", contexts: ["playtime","dance"], icon: "👏",
+        song: "If You're Happy and You Know It",
+        ageMin: 3, ageMax: 7, mood: "playful",
+        context: "☀️ hand-over-hand guide",
+        activity: "Guide your baby's hands through clapping and tapping. Slow the tempo so they feel each action.",
+        tip: "Each day, hold a little lighter. Notice the moment they start initiating the clap before you do."
+      },
+      {
+        id: "x_ifyh_69p", contexts: ["playtime","dance"], icon: "👏",
+        song: "If You're Happy and You Know It",
+        ageMin: 5, ageMax: 10, mood: "playful",
+        context: "☀️ add a new verse weekly",
+        activity: "Sing familiar verses first, then add one new action at the end each week.",
+        tip: "That little flash of 'wait, what?' is them, fully alive to the moment."
+      },
+      {
+        id: "x_ifyh_912p", contexts: ["playtime","dance"], icon: "👏",
+        song: "If You're Happy and You Know It",
+        ageMin: 8, ageMax: 12, mood: "playful",
+        context: "☀️ baby leads the verse",
+        activity: "Pause after the familiar verses. Build a new verse around whatever your baby does.",
+        tip: "Their action caused something to happen. That is the beginning of confident communication."
+      },
+      /* ── WHEELS ON THE BUS ── */
+      {
+        id: "x_wotb_03c", contexts: ["carride","bonding"], icon: "🚌",
+        song: "The Wheels on the Bus",
+        ageMin: 0, ageMax: 5, mood: "calm",
+        context: "🚌 travel singing",
+        activity: "Sing slowly and evenly during travel. Keep your voice low and rhythmic.",
+        tip: "One steady thing in a swirl of sensation. You do not need them to respond. Just keep going."
+      },
+      {
+        id: "x_wotb_36p", contexts: ["playtime","dance"], icon: "🚌",
+        song: "The Wheels on the Bus",
+        ageMin: 2, ageMax: 7, mood: "playful",
+        context: "☀️ body percussion version",
+        activity: "Replace each sound with body percussion. Guide your baby's hands through each one.",
+        tip: "Watch their face when the verse changes and something new happens."
+      },
+      {
+        id: "x_wotb_69p", contexts: ["playtime","carride"], icon: "🚌",
+        song: "The Wheels on the Bus",
+        ageMin: 5, ageMax: 10, mood: "playful",
+        context: "☀️ floor props play",
+        activity: "Use simple objects to act out each verse. Let your baby handle each prop.",
+        tip: "When they mouth the toy car or bang the cup, that is how they are learning it."
+      },
+      {
+        id: "x_wotb_912p", contexts: ["playtime","dance"], icon: "🚌",
+        song: "The Wheels on the Bus",
+        ageMin: 8, ageMax: 12, mood: "playful",
+        context: "☀️ baby leads the verse",
+        activity: "Pause after each verse and build the next one around your baby's action.",
+        tip: "What I do changes things. That is the beginning of confident communication."
+      },
+      /* ── HEAD SHOULDERS ── */
+      {
+        id: "x_hskt_03c", contexts: ["bonding","playtime"], icon: "🌿",
+        song: "Head, Shoulders, Knees and Toes",
+        ageMin: 0, ageMax: 5, mood: "calm",
+        context: "🌿 feather-touch body map",
+        activity: "Touch each body part with gentle, confident pressure, pausing three seconds on each.",
+        tip: "Nothing rushed. Just you, introducing them to themselves."
+      },
+      {
+        id: "x_hskt_36p", contexts: ["playtime","bonding"], icon: "🌿",
+        song: "Head, Shoulders, Knees and Toes",
+        ageMin: 3, ageMax: 7, mood: "playful",
+        context: "☀️ exaggerated expression version",
+        activity: "Use big, slow facial expressions for each body part. Hold each one for two seconds.",
+        tip: "Big, held expressions give them time to really read what they are seeing."
+      },
+      {
+        id: "x_hskt_69p", contexts: ["playtime","bonding"], icon: "🌿",
+        song: "Head, Shoulders, Knees and Toes",
+        ageMin: 5, ageMax: 10, mood: "playful",
+        context: "☀️ on the caregiver's body",
+        activity: "Guide your baby to touch your head, shoulders, knees and toes. Celebrate each touch.",
+        tip: "They are discovering that their actions have an effect on another person — a genuinely exciting realisation."
+      },
+      {
+        id: "x_hskt_912p", contexts: ["playtime","bonding"], icon: "🌿",
+        song: "Head, Shoulders, Knees and Toes",
+        ageMin: 8, ageMax: 12, mood: "playful",
+        context: "☀️ doll then self",
+        activity: "Touch the body parts on a soft doll, then ask where is your nose and wait.",
+        tip: "Any attempt is worth celebrating, however approximate."
+      },
+      /* ── PAT-A-CAKE ── */
+      {
+        id: "x_pac_03p", contexts: ["playtime","bonding"], icon: "👏",
+        song: "Pat-a-Cake",
+        ageMin: 0, ageMax: 4, mood: "playful",
+        context: "☀️ watch the clap",
+        activity: "Clap your hands slowly at about 30 centimetres from your baby's face. Let them watch.",
+        tip: "They are watching everything, storing it all."
+      },
+      {
+        id: "x_pac_36p", contexts: ["playtime","bonding"], icon: "👏",
+        song: "Pat-a-Cake",
+        ageMin: 3, ageMax: 7, mood: "playful",
+        context: "☀️ guided clap",
+        activity: "Guide their hands to clap, gradually lightening your hold over days.",
+        tip: "Notice the moment they start initiating the clap before you do."
+      },
+      {
+        id: "x_pac_69p", contexts: ["playtime","bonding"], icon: "👏",
+        song: "Pat-a-Cake",
+        ageMin: 5, ageMax: 10, mood: "playful",
+        context: "☀️ two-object percussion",
+        activity: "Give your baby two soft blocks and help them bang them together in rhythm.",
+        tip: "Two hands working together is genuinely hard at this age. Blocks give something satisfying to bang while the song helps them find the timing."
+      },
+      {
+        id: "x_pac_912c", contexts: ["naptime","bonding"], icon: "👏",
+        song: "Pat-a-Cake",
+        ageMin: 8, ageMax: 12, mood: "calm",
+        context: "🌙 slow bedtime version",
+        activity: "Sing at half speed in dim light. Guide their hands gently. End with their palms resting on your cheeks.",
+        tip: "Simple, and surprisingly lovely for both of you."
+      },
+      /* ── ROW YOUR BOAT ── */
+      {
+        id: "x_ryrb_03c", contexts: ["bonding","naptime"], icon: "🚣",
+        song: "Row, Row, Row Your Boat",
+        ageMin: 0, ageMax: 5, mood: "calm",
+        context: "🌿 deep sway carry",
+        activity: "Hold your baby in a cradle hold and sway slowly from your hips while humming.",
+        tip: "Let the movement come from your hips, not your arms. Deep and slow."
+      },
+      {
+        id: "x_ryrb_36p", contexts: ["playtime","bonding"], icon: "🚣",
+        song: "Row, Row, Row Your Boat",
+        ageMin: 3, ageMax: 7, mood: "playful",
+        context: "☀️ lap bounce with pause",
+        activity: "Bounce gently on each beat. On merrily, bounce quickly four times, then lift and pause.",
+        tip: "By the second week, watch them brace for the merrily before you even get there."
+      },
+      {
+        id: "x_ryrb_69p", contexts: ["playtime","bonding"], icon: "🚣",
+        song: "Row, Row, Row Your Boat",
+        ageMin: 5, ageMax: 10, mood: "playful",
+        context: "☀️ floor rowing together",
+        activity: "Sit facing your baby and row back and forth, matching each other's movement.",
+        tip: "To row together, they have to watch you and respond to you."
+      },
+      {
+        id: "x_ryrb_912p", contexts: ["playtime","bonding"], icon: "🚣",
+        song: "Row, Row, Row Your Boat",
+        ageMin: 8, ageMax: 12, mood: "playful",
+        context: "☀️ soft toy in the boat",
+        activity: "Place a soft toy in a box boat and let your baby row it across the floor.",
+        tip: "Ask where is teddy going and see what they do. Follow their lead with the story."
+      },
+      /* ── BRAHMS LULLABY ── */
+      {
+        id: "x_bl_03f", contexts: ["naptime","bonding"], icon: "🌙",
+        song: "Brahms' Lullaby",
+        ageMin: 0, ageMax: 4, mood: "fussy",
+        context: "😢 lip-to-temple vibration",
+        activity: "Hold your baby against your chest and sing with your lips gently touching their temple or forehead.",
+        tip: "Sound through touch feels different to sound through air."
+      },
+      {
+        id: "x_bl_36c", contexts: ["outdoors","bonding"], icon: "🌙",
+        song: "Brahms' Lullaby",
+        ageMin: 2, ageMax: 8, mood: "calm",
+        context: "🌿 nature pairing",
+        activity: "Hold your baby near a window or outdoors. Sing while following their gaze.",
+        tip: "Don't redirect — just be there, singing, while they take the world in."
+      },
+      {
+        id: "x_bl_69f", contexts: ["bonding","naptime"], icon: "🌙",
+        song: "Brahms' Lullaby",
+        ageMin: 5, ageMax: 10, mood: "fussy",
+        context: "😢 pressure and release",
+        activity: "Gently press and release each limb in slow rhythm. Finish with warm hands cupped over their head.",
+        tip: "Steady, warm, unhurried."
+      },
+      {
+        id: "x_bl_912c", contexts: ["naptime","bonding"], icon: "🌙",
+        song: "Brahms' Lullaby",
+        ageMin: 8, ageMax: 12, mood: "calm",
+        context: "🌙 slowing-down ritual",
+        activity: "Use this only before sleep. Same room, same position, same three repetitions, slightly softer each time.",
+        tip: "The ritual is the thing. The consistency is what works."
+      },
+      /* ── SOMEWHERE OVER THE RAINBOW ── */
+      {
+        id: "x_sotr_03f", contexts: ["bonding","naptime"], icon: "🌈",
+        song: "Somewhere Over the Rainbow",
+        ageMin: 0, ageMax: 4, mood: "fussy",
+        context: "😢 dark room hum",
+        activity: "Go to the darkest quiet room. Hold your baby and hum at your lowest comfortable pitch. Stay responsive.",
+        tip: "Less is often more for a very unsettled baby. Dark, quiet, and a low hum."
+      },
+      {
+        id: "x_sotr_36c", contexts: ["outdoors","bonding"], icon: "🌈",
+        song: "Somewhere Over the Rainbow",
+        ageMin: 2, ageMax: 8, mood: "calm",
+        context: "🌿 colour naming walk",
+        activity: "Carry your baby slowly through your home. Pause at colours and name them softly.",
+        tip: "Naming what you see together, inside a song they know, is a quietly rich experience."
+      },
+      {
+        id: "x_sotr_69c", contexts: ["naptime","bonding"], icon: "🌈",
+        song: "Somewhere Over the Rainbow",
+        ageMin: 5, ageMax: 10, mood: "calm",
+        context: "🌙 long phrase breathing",
+        activity: "Lay your baby on your lap facing up. Sing long, connected phrases with one warm hand on their chest.",
+        tip: "Let the melody arc over them like a slow wave."
+      },
+      {
+        id: "x_sotr_912c", contexts: ["bonding","outdoors"], icon: "🌈",
+        song: "Somewhere Over the Rainbow",
+        ageMin: 8, ageMax: 12, mood: "calm",
+        context: "🌙 wish and wonder time",
+        activity: "Sit at a window. Sing slowly. After each verse, point to something outside and name it softly.",
+        tip: "Being quietly present together — looking, naming, not needing to fill every moment."
+      },
+      /* ── SWING LOW ── */
+      {
+        id: "x_sl_03f", contexts: ["bonding","naptime"], icon: "🎵",
+        song: "Swing Low, Sweet Chariot",
+        ageMin: 0, ageMax: 4, mood: "fussy",
+        context: "😢 football carry figure-8",
+        activity: "Hold your baby in a football carry and walk slow figure-eights in dim light while humming.",
+        tip: "The figure-eight path moves them in more than one direction, which tends to be more calming than a straight back-and-forth."
+      },
+      {
+        id: "x_sl_36c", contexts: ["bonding","naptime"], icon: "🎵",
+        song: "Swing Low, Sweet Chariot",
+        ageMin: 2, ageMax: 7, mood: "calm",
+        context: "🌙 muslin hammock sway",
+        activity: "Lay your baby in a long muslin held securely at both ends. Swing gently side to side with small arcs.",
+        tip: "Watch their body soften as the swaying finds its rhythm."
+      },
+      {
+        id: "x_sl_912f", contexts: ["bonding","naptime"], icon: "🎵",
+        song: "Swing Low, Sweet Chariot",
+        ageMin: 8, ageMax: 12, mood: "fussy",
+        context: "😢 consistent comfort hold",
+        activity: "Use this song only when your baby is distressed. Same hold, same tempo, same three repetitions.",
+        tip: "Consistency is what makes this a comfort, not the song itself."
+      },
+      /* ── HUSH NOW QUIET NOW ── */
+      {
+        id: "x_hn_03f", contexts: ["bonding","naptime"], icon: "🌿",
+        song: "Hush Now, Quiet Now",
+        ageMin: 0, ageMax: 5, mood: "fussy",
+        context: "😢 shush-pat technique",
+        activity: "Hold your baby over your shoulder. Add a firm rhythmic pat and a sustained shh between phrases.",
+        tip: "Louder than feels natural. Keep going."
+      },
+      {
+        id: "x_hn_36f", contexts: ["bonding","outdoors"], icon: "🌿",
+        song: "Hush Now, Quiet Now",
+        ageMin: 3, ageMax: 7, mood: "fussy",
+        context: "😢 outdoor interruption",
+        activity: "If indoor soothing stops working, step outside briefly. Walk slowly and sing quietly.",
+        tip: "A change of scene gives a distressed baby a moment of pause that is often enough to turn things around."
+      },
+      /* ── MORE WE GET TOGETHER ── */
+      {
+        id: "x_mwgt_03c", contexts: ["bonding"], icon: "💛",
+        song: "The More We Get Together",
+        ageMin: 0, ageMax: 5, mood: "calm",
+        context: "🌿 new person introduction",
+        activity: "Hold your baby facing a new caregiver and sing, using their name.",
+        tip: "Your voice is the bridge — familiar and safe — as something new comes into focus."
+      },
+      {
+        id: "x_mwgt_36p", contexts: ["bonding","playtime"], icon: "💛",
+        song: "The More We Get Together",
+        ageMin: 3, ageMax: 8, mood: "playful",
+        context: "☀️ sibling or pet song",
+        activity: "Sit with your baby and a sibling or calm pet. Sing using their name and guide gentle touch.",
+        tip: "A calm, musical introduction makes the whole thing feel like play."
+      },
+      {
+        id: "x_mwgt_69p", contexts: ["bonding","playtime"], icon: "💛",
+        song: "The More We Get Together",
+        ageMin: 5, ageMax: 10, mood: "playful",
+        context: "☀️ group version",
+        activity: "Sing in a circle with other parents, substituting each baby's name.",
+        tip: "Even in a room full of others, they know when the song is about them."
+      },
+      {
+        id: "x_mwgt_912p", contexts: ["bonding","playtime"], icon: "💛",
+        song: "The More We Get Together",
+        ageMin: 8, ageMax: 12, mood: "playful",
+        context: "☀️ photo and name game",
+        activity: "Hold up a family photo and sing a verse for each person. Watch how your baby responds.",
+        tip: "Does your baby look for that person in the room? That search is them making a connection in real time."
+      },
+      /* ── SKINNAMARINK ── */
+      {
+        id: "x_sk_03c", contexts: ["bonding","naptime"], icon: "💛",
+        song: "Skinnamarink",
+        ageMin: 0, ageMax: 5, mood: "calm",
+        context: "🌿 morning greeting ritual",
+        activity: "Make this the first song every morning. Sing before picking your baby up, then lift them on the final I love you.",
+        tip: "Same song, same moment, same you — every morning."
+      },
+      {
+        id: "x_sk_36c", contexts: ["bonding","playtime"], icon: "💛",
+        song: "Skinnamarink",
+        ageMin: 3, ageMax: 8, mood: "calm",
+        context: "🌿 eyes-hands-heart gesture",
+        activity: "Point to your eyes, hands and heart as you sing. On I love you, point to your baby and wait.",
+        tip: "Whatever they do in return — that is their version of saying it back."
+      },
+      {
+        id: "x_sk_69p", contexts: ["bonding","playtime"], icon: "💛",
+        song: "Skinnamarink",
+        ageMin: 5, ageMax: 10, mood: "playful",
+        context: "☀️ I love YOU emphasis game",
+        activity: "Pause before you, then say your baby's name. They will begin anticipating the pause.",
+        tip: "Watch their whole body respond to their name inside a song they love."
+      },
+      {
+        id: "x_sk_912c", contexts: ["naptime","bonding"], icon: "💛",
+        song: "Skinnamarink",
+        ageMin: 8, ageMax: 12, mood: "calm",
+        context: "🌙 goodnight version",
+        activity: "Sing once while holding your baby, then once more as you lay them down. Touch their chest gently on I love you.",
+        tip: "Let the song end quietly. That silence is part of it."
+      },
+      /* ── MARY HAD A LITTLE LAMB ── */
+      {
+        id: "x_mhall_36c", contexts: ["bonding","playtime"], icon: "🐑",
+        song: "Mary Had a Little Lamb",
+        ageMin: 4, ageMax: 12, mood: "calm",
+        context: "🌿 texture exploration",
+        activity: "Brush different safe fabrics across your baby's arms and cheeks, naming each texture.",
+        tip: "Watch them feel the difference as each new texture arrives."
+      },
+      {
+        id: "x_mhall_69p", contexts: ["outdoors","playtime"], icon: "🐑",
+        song: "Mary Had a Little Lamb",
+        ageMin: 4, ageMax: 12, mood: "playful",
+        context: "☀️ everywhere follow game",
+        activity: "Move through your home with your baby while the toy lamb follows everywhere.",
+        tip: "Personalising the song to the real moment makes it feel alive and immediate."
+      },
+      {
+        id: "x_mhall_912p", contexts: ["playtime","bonding"], icon: "🐑",
+        song: "Mary Had a Little Lamb",
+        ageMin: 7, ageMax: 12, mood: "playful",
+        context: "☀️ baby hides the lamb",
+        activity: "Let your baby hide the lamb under a cloth or in a box. Search for it dramatically.",
+        tip: "Your baby knows where it is, you don't — and they know that you don't."
+      },
+      /* ── ITSY BITSY SPIDER ── */
+      {
+        id: "x_ibs_36p", contexts: ["playtime","bonding"], icon: "🕷",
+        song: "Itsy Bitsy Spider",
+        ageMin: 3, ageMax: 7, mood: "playful",
+        context: "☀️ big spider version",
+        activity: "Use your whole hand as a big, slow spider walking up their leg and over their tummy. On the rain, flutter all five fingers rapidly from head to toe.",
+        tip: "The contrast between the careful crawl and the rainfall is interesting for them to feel."
+      },
+      {
+        id: "x_ibs_69p", contexts: ["playtime","bonding"], icon: "🕷",
+        song: "Itsy Bitsy Spider",
+        ageMin: 5, ageMax: 10, mood: "playful",
+        context: "☀️ baby's fingers on caregiver",
+        activity: "Take your baby's fingers and walk them up your arm, across your face, down your nose. Give a big funny reaction when they arrive.",
+        tip: "When your baby's fingers land on your nose and you react, they learn that they made that happen."
+      },
+      {
+        id: "x_ibs_912p", contexts: ["playtime","dance"], icon: "🕷",
+        song: "Itsy Bitsy Spider",
+        ageMin: 8, ageMax: 12, mood: "playful",
+        context: "☀️ speed variation game",
+        activity: "Sing the song slow, then fast, then very slow. Match your hand movements to the speed.",
+        tip: "Watch their face change as the tempo shifts — they are tracking every difference."
+      },
+      /* ── OLD MACDONALD ── */
+      {
+        id: "x_omd_03p", contexts: ["playtime","bonding"], icon: "🐄",
+        song: "Old MacDonald Had a Farm",
+        ageMin: 0, ageMax: 5, mood: "playful",
+        context: "☀️ sound pause and watch",
+        activity: "Sing close to your baby's ear, pausing three full seconds after each animal sound. Watch closely for any response.",
+        tip: "Those quiet, subtle responses are real reactions. Pausing long enough to see them is the whole point."
+      },
+      {
+        id: "x_omd_36p", contexts: ["playtime","bonding"], icon: "🐄",
+        song: "Old MacDonald Had a Farm",
+        ageMin: 3, ageMax: 8, mood: "playful",
+        context: "☀️ animal picture book",
+        activity: "Use a farm animal book. Sing a verse for each animal as you show the picture, then make the sound while holding the image steady for five seconds. Let your baby bat or grab the page.",
+        tip: "Simple board books and a bit of patience are remarkably powerful tools."
+      },
+      {
+        id: "x_omd_69p", contexts: ["playtime","bonding"], icon: "🐄",
+        song: "Old MacDonald Had a Farm",
+        ageMin: 5, ageMax: 10, mood: "playful",
+        context: "☀️ toy animal props",
+        activity: "Hold up the toy animal as you sing its verse. Make it speak while your baby holds it.",
+        tip: "A toy they can hold while you sing its name gives the word far more to attach itself to."
+      },
+      {
+        id: "x_omd_912p", contexts: ["playtime","bonding"], icon: "🐄",
+        song: "Old MacDonald Had a Farm",
+        ageMin: 8, ageMax: 12, mood: "playful",
+        context: "☀️ fill in the sound",
+        activity: "Stop before the E-I-E-I-O and wait. Whatever sound your baby makes, sing it back.",
+        tip: "Even a random vocalisation in the right moment deserves to be treated as the right answer."
+      },
+      /* ── THIS LITTLE PIGGY ── */
+      {
+        id: "x_tlp_03c", contexts: ["bonding","bathtime"], icon: "🐷",
+        song: "This Little Piggy",
+        ageMin: 0, ageMax: 5, mood: "calm",
+        context: "🌿 newborn foot reflex",
+        activity: "Stroke the sole of your baby's foot gently with your thumb and watch their toes fan out. Sing one verse per toe.",
+        tip: "Their reflex is part of the song — their body already knows how to respond."
+      },
+      {
+        id: "x_tlp_36p", contexts: ["playtime","bonding"], icon: "🐷",
+        song: "This Little Piggy",
+        ageMin: 3, ageMax: 8, mood: "playful",
+        context: "☀️ hand version",
+        activity: "Do the song on fingers instead of toes. On wee wee wee all the way home, run your fingers up their arm and into their neck. Build the anticipation.",
+        tip: "The journey up the arm toward that final tickle is full of wonderful suspense."
+      },
+      {
+        id: "x_tlp_69p", contexts: ["bathtime","playtime"], icon: "🐷",
+        song: "This Little Piggy",
+        ageMin: 5, ageMax: 10, mood: "playful",
+        context: "☀️ toes on caregiver's face",
+        activity: "Bring each of your baby's toes to a different part of your face — nose, cheek, chin, ear — and give a funny response each time.",
+        tip: "They quickly understand: I did that, and it caused that."
+      },
+      {
+        id: "x_tlp_912p", contexts: ["playtime","bonding"], icon: "🐷",
+        song: "This Little Piggy",
+        ageMin: 8, ageMax: 12, mood: "playful",
+        context: "☀️ whose piggy is it?",
+        activity: "Do the song on your toes, then your baby's toes, then a doll's toes. Ask whose piggies before each round and wait.",
+        tip: "Watching a baby begin to sort out mine, yours and theirs is quite something."
+      },
+      /* ── THE BEAR WENT OVER THE MOUNTAIN ── */
+      {
+        id: "x_tbwotm_03c", contexts: ["bonding","outdoors"], icon: "🐻",
+        song: "The Bear Went Over the Mountain",
+        ageMin: 0, ageMax: 5, mood: "calm",
+        context: "🌿 carry and narrate",
+        activity: "Carry your baby slowly and narrate what you both see — keep the tune, change the words to what is actually around you.",
+        tip: "A familiar tune with real words about the real world is a song about their actual life."
+      },
+      {
+        id: "x_tbwotm_36p", contexts: ["playtime","bonding"], icon: "🐻",
+        song: "The Bear Went Over the Mountain",
+        ageMin: 3, ageMax: 7, mood: "playful",
+        context: "☀️ teddy hides",
+        activity: "Make a soft bear toy climb over surfaces — a cushion, a knee, the sofa arm. Hide it behind a cushion at the end and ask where is bear.",
+        tip: "Watching a toy disappear and then searching for it is one of the earliest signs of a new kind of understanding."
+      },
+      {
+        id: "x_tbwotm_69p", contexts: ["playtime","outdoors"], icon: "🐻",
+        song: "The Bear Went Over the Mountain",
+        ageMin: 5, ageMax: 10, mood: "playful",
+        context: "☀️ baby is the bear",
+        activity: "During tummy time, place a small pillow ahead and help your baby crawl over it as you sing. Celebrate the summit.",
+        tip: "Babies respond to being the hero of something, even at this age."
+      },
+      {
+        id: "x_tbwotm_912p", contexts: ["playtime","bonding"], icon: "🐻",
+        song: "The Bear Went Over the Mountain",
+        ageMin: 8, ageMax: 12, mood: "playful",
+        context: "☀️ hide and find",
+        activity: "Hide a soft bear under a blanket. Sing while they search. Then hide it again and let them watch you this time.",
+        tip: "The confidence in that second search — direct, certain — shows you something about what they are capable of now."
+      },
+      /* ── YOUVE GOT A FRIEND IN ME ── */
+      {
+        id: "x_ygafim_03c", contexts: ["bonding","naptime"], icon: "💛",
+        song: "You've Got a Friend in Me",
+        ageMin: 0, ageMax: 5, mood: "calm",
+        context: "🌿 post-feed hold",
+        activity: "After a feed, hold your baby upright against your shoulder. Sing quietly into their ear. Let the song and the closeness be the whole experience.",
+        tip: "The post-feed moment is naturally settled and warm. Adding a quiet song gives that contented feeling a soundtrack."
+      },
+      {
+        id: "x_ygafim_36p", contexts: ["bonding","playtime"], icon: "💛",
+        song: "You've Got a Friend in Me",
+        ageMin: 3, ageMax: 8, mood: "playful",
+        context: "☀️ face-to-face version",
+        activity: "Sit your baby on your lap facing you. Sing with big warm facial expressions. On friend in me, place both hands over your own heart.",
+        tip: "Give them a rich, slow, expressive face to look at inside a song they enjoy."
+      },
+      {
+        id: "x_ygafim_69c", contexts: ["bonding"], icon: "💛",
+        song: "You've Got a Friend in Me",
+        ageMin: 5, ageMax: 10, mood: "calm",
+        context: "🌿 caregiver handover",
+        activity: "When handing your baby to another caregiver, both adults sing together during the transfer. Keep singing as you step away.",
+        tip: "When both voices are singing the same song, the transition has something steady running through it."
+      },
+      {
+        id: "x_ygafim_912p", contexts: ["bonding","playtime"], icon: "💛",
+        song: "You've Got a Friend in Me",
+        ageMin: 8, ageMax: 12, mood: "playful",
+        context: "☀️ photo friend version",
+        activity: "Look through a photo book together and sing a verse for each special person. Point and wait for your baby to show recognition.",
+        tip: "Seeing a face, hearing a name sung warmly, and feeling your delight as they recognise it — all of that together is a very full experience."
+      },
+      /* ── SLEEP BABY SLEEP ── */
+      {
+        id: "x_sbs_03f", contexts: ["naptime","bonding"], icon: "🌙",
+        song: "Sleep, Baby, Sleep",
+        ageMin: 0, ageMax: 4, mood: "fussy",
+        context: "😢 sole-of-foot hold",
+        activity: "Cup the sole of each foot in your palms — firm, warm, completely still. Sing without moving them at all.",
+        tip: "Sometimes what a very small baby needs most is stillness, not action."
+      },
+      {
+        id: "x_sbs_36c", contexts: ["naptime","bonding"], icon: "🌙",
+        song: "Sleep, Baby, Sleep",
+        ageMin: 2, ageMax: 7, mood: "calm",
+        context: "🌙 cot-side transfer ritual",
+        activity: "Stand at the cot side and sing twice through. On the second verse, begin slowly lowering them — arrive at the mattress on the last note. Keep your hands on them for thirty seconds after.",
+        tip: "The thirty seconds of continued contact is the quiet bridge between held and put down."
+      },
+      {
+        id: "x_sbs_69f", contexts: ["naptime","bonding"], icon: "🌙",
+        song: "Sleep, Baby, Sleep",
+        ageMin: 5, ageMax: 10, mood: "fussy",
+        context: "😢 standing weight-shift",
+        activity: "Stand with feet hip-width apart. Hold your baby against your chest and shift your weight slowly from foot to foot. Face forward, not down. Breathe slowly.",
+        tip: "Facing forward together — the same direction — is often calmer than face-to-face. Close without being intense."
+      },
+      {
+        id: "x_sbs_912c", contexts: ["naptime","bonding"], icon: "🌙",
+        song: "Sleep, Baby, Sleep",
+        ageMin: 8, ageMax: 12, mood: "calm",
+        context: "🌙 three-verse countdown",
+        activity: "Sing three verses: first in your arms, second laying them down beside you, third with you sitting nearby.",
+        tip: "The song says: this is how it ends, and it ends well."
       }
     ];
 
@@ -1983,7 +2705,7 @@
         return;
       }
 
-      const matched = activities.filter(a => a.contexts && a.contexts.includes(ctx));
+      const matched = activities.filter(a => a.contexts && a.contexts.includes(ctx) && selectedAge >= a.ageMin && selectedAge <= a.ageMax);
 
       if (!matched.length) {
         libraryList.innerHTML = `
