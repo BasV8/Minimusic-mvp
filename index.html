@@ -1,42 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MiniMusic</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MiniMusic</title>
+  <style>
+    body { font-family: sans-serif; background: #fffdf5; margin: 0; padding: 20px; }
+    h1 { text-align: center; color: #5a4a3a; font-size: 2rem; margin-bottom: 8px; }
+    .subtitle { text-align: center; color: #8a7a6a; margin-bottom: 32px; }
+    .cards { display: flex; flex-direction: column; gap: 16px; max-width: 400px; margin: 0 auto; }
+    .card { background: white; border-radius: 20px; padding: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+    .card h2 { margin: 8px 0 4px; color: #5a4a3a; }
+    .card p { color: #8a7a6a; margin: 0 0 16px; font-size: 0.9rem; }
+    button { background: #f7c948; border: none; border-radius: 30px; padding: 10px 24px; font-size: 1rem; cursor: pointer; color: #5a4a3a; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>🎵 MiniMusic</h1>
+  <p class="subtitle">Tiny songs for tiny humans</p>
+  <div class="cards">
+    <div class="card"><div style="font-size:2rem">🌅</div><h2>Morning Hum</h2><p>Start the day with a gentle hello song</p><button>Let's try ✨</button></div>
+    <div class="card"><div style="font-size:2rem">🌿</div><h2>Calm & Sway</h2><p>A slow rocking rhythm for quiet moments</p><button>Let's try ✨</button></div>
+    <div class="card"><div style="font-size:2rem">🌙</div><h2>Sleepy Lullaby</h2><p>Soft sounds to ease your baby to sleep</p><button>Let's try ✨</button></div>
+  </div>
+</body>
 </html>
-```
-5. Click **Commit new file** ✅
-
----
-
-### BUT WAIT — Simpler Path for You 🌱
-
-Actually, for a complete beginner, **pasting files one by one into GitHub manually is going to get painful fast** as the app grows.
-
-The much smoother path for you is:
-
-> **Use Claude to generate a complete single-file HTML app** (no React build process needed) → paste one file → Vercel shows it instantly.
-
----
-
-## Recommended Next Step
-
-Go to Claude and paste this prompt:
-```
-Build me a complete single-file HTML app called MiniMusic for 
-parents of babies 0–12 months.
-
-The screen should show:
-- A warm header with "MiniMusic 🎵"
-- 3 activity cards with emoji, name, and a "Let's try" button
-- Soft colours: morning yellow, sky blue, lavender
-- Rounded friendly shapes
-- All CSS and JavaScript inside one single HTML file
-- No build tools, no React, no imports — just pure HTML/CSS/JS
-- It must work when saved as index.html on Vercel
