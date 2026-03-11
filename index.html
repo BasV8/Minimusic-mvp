@@ -87,13 +87,97 @@
     }
 
     /* ============================================================
-       PAGE LAYOUT
+       PAGE LAYOUT — two-screen system
        ============================================================ */
-    .page {
+
+    /* Outer clip container — hides the off-screen view */
+    .app-shell {
       max-width: 520px;
       margin: 0 auto;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Each screen takes full width, positioned side by side */
+    .screen {
+      width: 100%;
       padding: 0 1rem 5rem;
       position: relative;
+      transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1),
+                  opacity  0.32s ease;
+      will-change: transform, opacity;
+    }
+
+    /* Home screen — visible by default */
+    .screen--home {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    .screen--home.slide-out {
+      transform: translateX(-100%);
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+      top: 0; left: 0;
+    }
+
+    /* Result screen — hidden off to the right by default */
+    .screen--result {
+      transform: translateX(100%);
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+      top: 0; left: 0; right: 0;
+    }
+    .screen--result.slide-in {
+      transform: translateX(0);
+      opacity: 1;
+      pointer-events: auto;
+      position: relative;
+    }
+
+    /* Back button */
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--white-warm);
+      border: 1.5px solid var(--parchment-dark);
+      border-radius: var(--r-pill);
+      padding: 0.5rem 1.1rem;
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--ink-mid);
+      cursor: pointer;
+      box-shadow: var(--shadow-xs);
+      transition: all 0.18s ease;
+      margin: 1.4rem 0 1rem;
+    }
+    .btn-back:hover {
+      background: var(--parchment);
+      border-color: var(--ink-faint);
+      transform: translateX(-2px);
+    }
+    .btn-back svg {
+      transition: transform 0.18s ease;
+    }
+    .btn-back:hover svg {
+      transform: translateX(-3px);
+    }
+
+    /* Result screen header strip */
+    .result-screen-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1.2rem;
+    }
+    .result-screen-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--ink-soft);
+      font-weight: 600;
     }
 
     /* ============================================================
@@ -725,6 +809,47 @@
     }
 
     /* ============================================================
+       FEEDBACK BUTTON
+       ============================================================ */
+    .feedback-wrap {
+      text-align: center;
+      margin: 1.5rem 0 0.5rem;
+      position: relative; z-index: 1;
+    }
+    .btn-feedback {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.75rem 1.6rem;
+      background: var(--lavender-wash);
+      border: 1.5px solid var(--lavender-deep);
+      border-radius: var(--r-pill);
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--lavender-deep);
+      text-decoration: none;
+      box-shadow: 0 3px 0 var(--lavender), var(--shadow-xs);
+      transition: all 0.18s ease;
+    }
+    .btn-feedback:hover {
+      background: var(--lavender);
+      color: var(--ink);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 0 var(--lavender-deep), var(--shadow-sm);
+    }
+    .btn-feedback:active {
+      transform: translateY(1px);
+      box-shadow: 0 1px 0 var(--lavender-deep);
+    }
+    .feedback-note {
+      margin-top: 0.45rem;
+      font-size: 0.75rem;
+      color: var(--ink-soft);
+      font-weight: 500;
+    }
+
+    /* ============================================================
        FOOTER
        ============================================================ */
     .app-footer {
@@ -805,7 +930,9 @@
   <!-- ============================================================
        PAGE
        ============================================================ -->
-  <div class="page">
+  <div class="app-shell">
+  <!-- SCREEN 1: HOME -->
+  <div class="screen screen--home" id="screenHome">
 
     <!-- HEADER -->
     <header class="app-header fade-in">
@@ -946,8 +1073,25 @@
       Find our moment →
     </button>
 
+  </div><!-- /screen--home -->
+
+  <!-- SCREEN 2: RESULT -->
+  <div class="screen screen--result" id="screenResult">
+
+    <!-- Back button row -->
+    <div class="result-screen-header">
+      <button class="btn-back" id="backBtn" type="button">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M10 3 L5 8 L10 13" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back
+      </button>
+      <span class="result-screen-title">Your moment 🎵</span>
+    </div>
+
     <!-- RESULT CARD -->
-    <div class="result-card" id="resultCard" role="region" aria-live="polite" aria-label="Suggested activity">
+    <div class="result-card visible" id="resultCard" role="region" aria-live="polite" aria-label="Suggested activity">
       <div class="result-band"></div>
       <div class="result-body">
         <div class="result-blob"></div>
@@ -966,7 +1110,6 @@
 
         <!-- Activity -->
         <div class="result-activity-label">
-          <!-- Leaf icon -->
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <path d="M2 12 Q4 6 8 4 Q13 2 12 7 Q11 12 5 12 Q3.5 12 2 12z"
                   fill="none" stroke="#6b5548" stroke-width="1.5" stroke-linecap="round"/>
@@ -979,7 +1122,6 @@
         <!-- Tip box -->
         <div class="result-tip-box">
           <div class="result-tip-label">
-            <!-- Star icon -->
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M7 1 l1.6 4.5H13l-3.9 2.8 1.5 4.7 -3.6-2.6 -3.6 2.6 1.5-4.7 -3.9-2.8 h4.4z"
                     fill="#e8c74a" stroke="#e8c74a" stroke-width="0.5"/>
@@ -997,12 +1139,25 @@
       </div>
     </div>
 
+    <!-- FEEDBACK -->
+    <div class="feedback-wrap">
+      <a class="btn-feedback"
+         href="https://docs.google.com/forms/d/e/1FAIpQLScvL5pAAiW22W8urIKWkopRQaDI1j8SD3WNsKCJleuvDAkIow/viewform?usp=publish-editor"
+         target="_blank"
+         rel="noopener noreferrer">
+        💬 Share your thoughts
+      </a>
+      <p class="feedback-note">Got 2 minutes? Your feedback shapes what we build next.</p>
+    </div>
+
     <!-- FOOTER -->
     <footer class="app-footer">
       Made with 💛 for humans both big and small · grounded in science.
     </footer>
 
-  </div><!-- /page -->
+  </div><!-- /screen--result -->
+
+  </div><!-- /app-shell -->
 
   <!-- ============================================================
        JAVASCRIPT
@@ -1363,6 +1518,28 @@
     });
 
     /* ----------------------------------------------------------
+       SCREEN NAVIGATION
+    ---------------------------------------------------------- */
+    const screenHome   = document.getElementById('screenHome');
+    const screenResult = document.getElementById('screenResult');
+    const backBtn      = document.getElementById('backBtn');
+
+    function goToResult() {
+      screenHome.classList.add('slide-out');
+      screenResult.classList.add('slide-in');
+      // Scroll shell to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function goToHome() {
+      screenHome.classList.remove('slide-out');
+      screenResult.classList.remove('slide-in');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    backBtn.addEventListener('click', goToHome);
+
+    /* ----------------------------------------------------------
        SHOW ACTIVITY
     ---------------------------------------------------------- */
     function showActivity(a) {
@@ -1385,12 +1562,8 @@
       document.getElementById('resultActivity').textContent = a.activity;
       document.getElementById('resultTip').textContent      = a.tip;
 
-      // Re-trigger animation
-      resultCard.style.animation = 'none';
-      resultCard.offsetHeight; // reflow
-      resultCard.style.animation = '';
-
-      resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      // Navigate to result screen
+      goToResult();
     }
   </script>
 </body>
