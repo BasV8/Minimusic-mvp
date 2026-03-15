@@ -2702,11 +2702,12 @@
     ---------------------------------------------------------- */
     function pickActivity() {
       let pool = activities.filter(a =>
+        a.audio &&
         a.mood === selectedMood &&
         selectedAge >= a.ageMin &&
         selectedAge <= a.ageMax
       );
-      if (!pool.length) pool = activities.filter(a => a.mood === selectedMood);
+      if (!pool.length) pool = activities.filter(a => a.audio && a.mood === selectedMood);
       lastMatchPool = pool;
       return pool[Math.floor(Math.random() * pool.length)];
     }
@@ -2747,6 +2748,8 @@
     }
 
     function goToHome() {
+      const audioEl = document.getElementById('audioEl');
+      if (audioEl) { audioEl.pause(); audioEl.currentTime = 0; }
       hideAll();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -2809,7 +2812,7 @@
         return;
       }
 
-      const matched = activities.filter(a => a.contexts && a.contexts.includes(ctx) && selectedAge >= a.ageMin && selectedAge <= a.ageMax);
+      const matched = activities.filter(a => a.audio && a.contexts && a.contexts.includes(ctx) && selectedAge >= a.ageMin && selectedAge <= a.ageMax);
 
       if (!matched.length) {
         libraryList.innerHTML = `
