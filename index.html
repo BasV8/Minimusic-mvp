@@ -765,6 +765,62 @@
       font-weight: 500;
     }
 
+    /* ── Audio player ── */
+    .audio-player {
+      margin: 1.1rem 0 0.8rem;
+    }
+    .audio-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .audio-play-btn {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: #F5C842;
+      border: none;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 2px 6px rgba(245,200,66,0.40);
+    }
+    .audio-play-btn:hover  { transform: scale(1.08); }
+    .audio-play-btn:active { transform: scale(0.96); }
+    .audio-progress {
+      flex: 1;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 5px;
+      border-radius: 99px;
+      background: rgba(61,47,40,0.12);
+      outline: none;
+      cursor: pointer;
+    }
+    .audio-progress::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: #F5C842;
+      border: 2px solid #3d2f28;
+      cursor: pointer;
+    }
+    .audio-progress::-moz-range-thumb {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: #F5C842;
+      border: 2px solid #3d2f28;
+      cursor: pointer;
+    }
+    .audio-bpm {
+      margin-top: 0.45rem;
+      font-size: 0.78rem;
+      font-family: var(--font-body);
+      color: var(--ink-soft);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
     /* Try again button */
     .btn-secondary {
       display: flex;
@@ -1354,6 +1410,25 @@
         </div>
         <div class="result-activity-text" id="resultActivity"></div>
 
+        <!-- Audio player (shown only when activity has audio) -->
+        <div class="audio-player" id="audioPlayer" style="display:none">
+          <audio id="audioEl" preload="none"></audio>
+          <div class="audio-controls">
+            <button class="audio-play-btn" id="audioPlayBtn" aria-label="Play song" type="button">
+              <svg id="iconPlay" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <polygon points="5,3 15,9 5,15" fill="#3d2f28"/>
+              </svg>
+              <svg id="iconPause" width="18" height="18" viewBox="0 0 18 18" fill="none" style="display:none">
+                <rect x="4" y="3" width="4" height="12" rx="1.5" fill="#3d2f28"/>
+                <rect x="10" y="3" width="4" height="12" rx="1.5" fill="#3d2f28"/>
+              </svg>
+            </button>
+            <input type="range" class="audio-progress" id="audioProgress"
+                   value="0" min="0" max="100" step="0.1" aria-label="Song progress">
+          </div>
+          <div class="audio-bpm" id="audioBpm"></div>
+        </div>
+
         <!-- Tip box -->
         <div class="result-tip-box">
           <div class="result-tip-label">
@@ -1565,7 +1640,8 @@
         ageMin: 0, ageMax: 5, mood: "calm",
         context: "🌙 naptime or wind-down",
         activity: "Lay your baby on your lap facing up. Gently rock your knees side to side as you sing. Trail your fingertips very lightly across their tummy in slow circles.",
-        tip: "Slow rhythm is one of the quietest ways to say 'you're safe'. There's no rush — stay here as long as you both need."
+        tip: "Slow rhythm is one of the quietest ways to say 'you're safe'. There's no rush — stay here as long as you both need.",
+        audio: "/audio/rockabye-baby.mp3", bpm: 72
       },
       {
         id: "c3", contexts: ["bonding", "waiting"], icon: "🌿",
@@ -1573,7 +1649,8 @@
         ageMin: 3, ageMax: 7, mood: "calm",
         context: "🌿 quiet moment or feed",
         activity: "Swaddle your baby and hold them close. Whisper each verse with your lips near their ear. If your baby fusses, add gentle movement or a warm hand on their back.",
-        tip: "A whisper close to their ear carries something a full voice can't — warmth without weight. Sometimes quiet is exactly enough."
+        tip: "A whisper close to their ear carries something a full voice can't — warmth without weight. Sometimes quiet is exactly enough.",
+        audio: "/audio/hush-little-baby.mp3", bpm: 68
       },
       {
         id: "c4", contexts: ["bonding", "playtime"], icon: "☀️",
@@ -1623,7 +1700,17 @@
         ageMin: 3, ageMax: 9, mood: "playful",
         context: "🎂 anytime — especially after feeds",
         activity: "Give your baby two soft blocks and help them bang them together in rhythm. Gradually lighten your hold — lighter each verse — until they're doing it themselves.",
-        tip: "Two hands working together is genuinely hard at this age. Blocks give something satisfying to bang while the song helps them find the timing."
+        tip: "Two hands working together is genuinely hard at this age. Blocks give something satisfying to bang while the song helps them find the timing.",
+        audio: "/audio/pat-a-cake.mp3", bpm: 104
+      },
+      {
+        id: "bb1", contexts: ["playtime", "waiting"], icon: "🐑",
+        song: "Baa Baa Black Sheep",
+        ageMin: 3, ageMax: 9, mood: "playful",
+        context: "☀️ playtime or waiting",
+        activity: "Hold your baby on your lap and tap their knees gently in time with the beat — one tap per syllable. Pause at 'have you any wool?' and wait with wide eyes. Repeat their response, whatever it is, as the next line.",
+        tip: "Call and response games like this are the earliest conversations. Every time you wait and respond to what they give you, you're teaching them that their voice matters.",
+        audio: "/audio/baa-baa-black-sheep.mp3", bpm: 100
       },
       {
         id: "p5", contexts: ["bathtime", "playtime"], icon: "🚣",
@@ -1665,7 +1752,8 @@
         ageMin: 0, ageMax: 5, mood: "fussy",
         context: "😢 evening or settling",
         activity: "Hold your baby against your chest and sing with your lips gently touching their temple or forehead.",
-        tip: "Sound through touch feels different to sound through air. Lips to their temple sends the song into them in a way that's very close to how they heard you before they were born."
+        tip: "Sound through touch feels different to sound through air. Lips to their temple sends the song into them in a way that's very close to how they heard you before they were born.",
+        audio: "/audio/brahms-lullaby.mp3", bpm: 58
       },
       {
         id: "f4", contexts: ["bonding"], icon: "💛",
@@ -1814,7 +1902,8 @@
         ageMin: 0, ageMax: 4, mood: "fussy",
         context: "😢 forearm hold",
         activity: "Hold your baby tummy-down along your forearm, head near your elbow. Support their bottom and rock your whole arm gently while humming.",
-        tip: "Sometimes all they need is to feel held and moving at the same time. This carry gives them both."
+        tip: "Sometimes all they need is to feel held and moving at the same time. This carry gives them both.",
+        audio: "/audio/rockabye-baby.mp3", bpm: 72
       },
       {
         id: "x_rb_36c", contexts: ["bonding","naptime"], icon: "🌙",
@@ -1822,7 +1911,8 @@
         ageMin: 2, ageMax: 7, mood: "calm",
         context: "🌿 leg massage",
         activity: "Lay your baby on a warm towel. Use gentle, confident downward strokes on each leg, one per beat. Sing one verse per leg.",
-        tip: "Slow strokes, warm hands, a familiar song. Just be steady and present — that is the whole thing."
+        tip: "Slow strokes, warm hands, a familiar song. Just be steady and present — that is the whole thing.",
+        audio: "/audio/rockabye-baby.mp3", bpm: 72
       },
       {
         id: "x_rb_69p", contexts: ["playtime","bonding"], icon: "🌙",
@@ -1830,7 +1920,8 @@
         ageMin: 5, ageMax: 10, mood: "playful",
         context: "☀️ supported rock and tilt",
         activity: "Sit your baby between your legs, facing outward. Hold their hands and rock forward and back. On \"down will come baby,\" tilt them back only a few degrees. Avoid this if your baby has reflux.",
-        tip: "That wide-eyed moment of 'oh!' is pure delight."
+        tip: "That wide-eyed moment of 'oh!' is pure delight.",
+        audio: "/audio/rockabye-baby.mp3", bpm: 72
       },
       {
         id: "x_rb_912c", contexts: ["naptime","bonding"], icon: "🌙",
@@ -1838,7 +1929,8 @@
         ageMin: 8, ageMax: 12, mood: "calm",
         context: "🌙 toy rocking ritual",
         activity: "Give your baby their comfort toy. Help them rock it as you sing. Lower both toy and baby gently on \"down will come baby.\"",
-        tip: "Watch how seriously they take it. They already know this feeling — now they are passing it on."
+        tip: "Watch how seriously they take it. They already know this feeling — now they are passing it on.",
+        audio: "/audio/rockabye-baby.mp3", bpm: 72
       },
       /* ── HUSH, LITTLE BABY ── */
       {
@@ -1847,7 +1939,8 @@
         ageMin: 0, ageMax: 5, mood: "calm",
         context: "🌿 whisper and stillness",
         activity: "Swaddle your baby and hold them close. Whisper each verse with your lips near their ear. If your baby fusses, add gentle movement or a warm hand on their back.",
-        tip: "A whisper close to their ear carries something a full voice cannot — warmth without weight."
+        tip: "A whisper close to their ear carries something a full voice cannot — warmth without weight.",
+        audio: "/audio/hush-little-baby.mp3", bpm: 68
       },
       {
         id: "x_hlb_36f", contexts: ["waiting","bonding"], icon: "🌿",
@@ -1855,7 +1948,8 @@
         ageMin: 2, ageMax: 7, mood: "fussy",
         context: "😢 room-change distraction",
         activity: "Walk slowly through different rooms as you sing. Pause at something mildly interesting, such as a window or mirror.",
-        tip: "When staying still is not working, move — slowly, gently, with something new to look at each time."
+        tip: "When staying still is not working, move — slowly, gently, with something new to look at each time.",
+        audio: "/audio/hush-little-baby.mp3", bpm: 68
       },
       {
         id: "x_hlb_69p", contexts: ["playtime","bonding"], icon: "🌿",
@@ -1863,7 +1957,8 @@
         ageMin: 5, ageMax: 10, mood: "playful",
         context: "☀️ object naming song",
         activity: "Improvise verses using safe-to-mouth objects your baby can hold. Name each object as you hand it to them.",
-        tip: "Watch their face when they realise the song is about them, right now, and the thing in their hands."
+        tip: "Watch their face when they realise the song is about them, right now, and the thing in their hands.",
+        audio: "/audio/hush-little-baby.mp3", bpm: 68
       },
       {
         id: "x_hlb_912c", contexts: ["bonding","naptime"], icon: "🌿",
@@ -1871,7 +1966,8 @@
         ageMin: 8, ageMax: 12, mood: "calm",
         context: "🌙 family photo book",
         activity: "Use a simple family photo book. Sing each verse about a person in the photos. Pause to let your baby point or look.",
-        tip: "They know that face. Watch them make the connection in real time."
+        tip: "They know that face. Watch them make the connection in real time.",
+        audio: "/audio/hush-little-baby.mp3", bpm: 68
       },
       /* ── YOU ARE MY SUNSHINE ── */
       {
@@ -2045,7 +2141,8 @@
         ageMin: 0, ageMax: 4, mood: "playful",
         context: "☀️ watch the clap",
         activity: "Clap your hands slowly at about 30 centimetres from your baby's face. Let them watch.",
-        tip: "They are watching everything, storing it all."
+        tip: "They are watching everything, storing it all.",
+        audio: "/audio/pat-a-cake.mp3", bpm: 104
       },
       {
         id: "x_pac_36p", contexts: ["playtime","bonding"], icon: "👏",
@@ -2053,7 +2150,8 @@
         ageMin: 3, ageMax: 7, mood: "playful",
         context: "☀️ guided clap",
         activity: "Guide their hands to clap, gradually lightening your hold over days.",
-        tip: "Notice the moment they start initiating the clap before you do."
+        tip: "Notice the moment they start initiating the clap before you do.",
+        audio: "/audio/pat-a-cake.mp3", bpm: 104
       },
       {
         id: "x_pac_69p", contexts: ["playtime","bonding"], icon: "👏",
@@ -2061,7 +2159,8 @@
         ageMin: 5, ageMax: 10, mood: "playful",
         context: "☀️ two-object percussion",
         activity: "Give your baby two soft blocks and help them bang them together in rhythm.",
-        tip: "Two hands working together is genuinely hard at this age. Blocks give something satisfying to bang while the song helps them find the timing."
+        tip: "Two hands working together is genuinely hard at this age. Blocks give something satisfying to bang while the song helps them find the timing.",
+        audio: "/audio/pat-a-cake.mp3", bpm: 104
       },
       {
         id: "x_pac_912c", contexts: ["naptime","bonding"], icon: "👏",
@@ -2069,7 +2168,8 @@
         ageMin: 8, ageMax: 12, mood: "calm",
         context: "🌙 slow bedtime version",
         activity: "Sing at half speed in dim light. Guide their hands gently. End with their palms resting on your cheeks.",
-        tip: "Simple, and surprisingly lovely for both of you."
+        tip: "Simple, and surprisingly lovely for both of you.",
+        audio: "/audio/pat-a-cake.mp3", bpm: 104
       },
       /* ── ROW YOUR BOAT ── */
       {
@@ -2111,7 +2211,8 @@
         ageMin: 0, ageMax: 4, mood: "fussy",
         context: "😢 lip-to-temple vibration",
         activity: "Hold your baby against your chest and sing with your lips gently touching their temple or forehead.",
-        tip: "Sound through touch feels different to sound through air."
+        tip: "Sound through touch feels different to sound through air.",
+        audio: "/audio/brahms-lullaby.mp3", bpm: 58
       },
       {
         id: "x_bl_36c", contexts: ["outdoors","bonding"], icon: "🌙",
@@ -2119,7 +2220,8 @@
         ageMin: 2, ageMax: 8, mood: "calm",
         context: "🌿 nature pairing",
         activity: "Hold your baby near a window or outdoors. Sing while following their gaze.",
-        tip: "Don't redirect — just be there, singing, while they take the world in."
+        tip: "Don't redirect — just be there, singing, while they take the world in.",
+        audio: "/audio/brahms-lullaby.mp3", bpm: 58
       },
       {
         id: "x_bl_69f", contexts: ["bonding","naptime"], icon: "🌙",
@@ -2127,7 +2229,8 @@
         ageMin: 5, ageMax: 10, mood: "fussy",
         context: "😢 pressure and release",
         activity: "Gently press and release each limb in slow rhythm. Finish with warm hands cupped over their head.",
-        tip: "Steady, warm, unhurried."
+        tip: "Steady, warm, unhurried.",
+        audio: "/audio/brahms-lullaby.mp3", bpm: 58
       },
       {
         id: "x_bl_912c", contexts: ["naptime","bonding"], icon: "🌙",
@@ -2135,7 +2238,8 @@
         ageMin: 8, ageMax: 12, mood: "calm",
         context: "🌙 slowing-down ritual",
         activity: "Use this only before sleep. Same room, same position, same three repetitions, slightly softer each time.",
-        tip: "The ritual is the thing. The consistency is what works."
+        tip: "The ritual is the thing. The consistency is what works.",
+        audio: "/audio/brahms-lullaby.mp3", bpm: 58
       },
       /* ── SOMEWHERE OVER THE RAINBOW ── */
       {
@@ -2771,6 +2875,7 @@
       document.getElementById('resultContext').textContent  = a.context;
       document.getElementById('resultActivity').textContent = a.activity;
       document.getElementById('resultTip').textContent      = a.tip;
+      updateAudioPlayer(a);
       // Slide from library to result
       screenLibrary.classList.remove('slide-in');
       screenResult.classList.add('slide-in');
@@ -2799,10 +2904,80 @@
       document.getElementById('resultContext').textContent  = a.context;
       document.getElementById('resultActivity').textContent = a.activity;
       document.getElementById('resultTip').textContent      = a.tip;
+      updateAudioPlayer(a);
 
       // Navigate to result screen
       goToResult();
     }
+
+    /* ----------------------------------------------------------
+       AUDIO PLAYER
+    ---------------------------------------------------------- */
+    function updateAudioPlayer(a) {
+      const player    = document.getElementById('audioPlayer');
+      const audioEl   = document.getElementById('audioEl');
+      const progress  = document.getElementById('audioProgress');
+      const bpmEl     = document.getElementById('audioBpm');
+      const iconPlay  = document.getElementById('iconPlay');
+      const iconPause = document.getElementById('iconPause');
+
+      // Always stop and reset when switching activities
+      audioEl.pause();
+      iconPlay.style.display  = '';
+      iconPause.style.display = 'none';
+      progress.value = 0;
+
+      if (a.audio) {
+        audioEl.src          = a.audio;
+        player.style.display = 'block';
+        const tempo = a.bpm < 65 ? 'Very slow, soothing'
+                    : a.bpm < 82 ? 'Gentle tempo'
+                    : a.bpm < 98 ? 'Moderate tempo'
+                    : 'Lively tempo';
+        bpmEl.textContent = '\u266a ' + a.bpm + ' BPM \u00b7 ' + tempo;
+      } else {
+        audioEl.src          = '';
+        player.style.display = 'none';
+      }
+    }
+
+    (function () {
+      const audioEl   = document.getElementById('audioEl');
+      const playBtn   = document.getElementById('audioPlayBtn');
+      const progress  = document.getElementById('audioProgress');
+      const iconPlay  = document.getElementById('iconPlay');
+      const iconPause = document.getElementById('iconPause');
+
+      playBtn.addEventListener('click', function () {
+        if (audioEl.paused) {
+          audioEl.play();
+          iconPlay.style.display  = 'none';
+          iconPause.style.display = '';
+        } else {
+          audioEl.pause();
+          iconPlay.style.display  = '';
+          iconPause.style.display = 'none';
+        }
+      });
+
+      audioEl.addEventListener('timeupdate', function () {
+        if (audioEl.duration) {
+          progress.value = (audioEl.currentTime / audioEl.duration) * 100;
+        }
+      });
+
+      progress.addEventListener('input', function () {
+        if (audioEl.duration) {
+          audioEl.currentTime = (progress.value / 100) * audioEl.duration;
+        }
+      });
+
+      audioEl.addEventListener('ended', function () {
+        iconPlay.style.display  = '';
+        iconPause.style.display = 'none';
+        progress.value = 0;
+      });
+    })();
   </script>
 </body>
 </html>
